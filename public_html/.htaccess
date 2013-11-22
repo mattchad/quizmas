@@ -1,0 +1,597 @@
+RewriteEngine on
+Options +FollowSymLinks
+
+RewriteCond %{HTTP_HOST} ^clpe\.org\.uk [NC]
+RewriteRule (.*) http://www.clpe.org.uk/$1 [R=301,L] 
+
+
+#CLPE.CO.UK
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^about/trustees-and-patrons$ http://www.clpe.org.uk/page/47 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^events-and-news/newsletter$ http://www.clpe.org.uk/news [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^about/contact-us$ http://www.clpe.org.uk/page/45 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^about$ http://www.clpe.org.uk/page/5 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^publications$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library$ http://www.clpe.org.uk/page/50 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families$ http://www.clpe.org.uk/page/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^events-and-news$ http://www.clpe.org.uk/news [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^professional-development/power-of-reading-project$ http://www.clpe.org.uk/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^about/staff$ http://www.clpe.org.uk/page/46 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^about/job-opportunities$ http://www.clpe.org.uk/page/48 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^about/book-a-room$ http://www.clpe.org.uk/page/49 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/booklists$ http://www.clpe.org.uk/page/52 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/book-it-the-complete-library-solution$ http://www.clpe.org.uk/page/51 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/anns-book-of-the-week$ http://www.clpe.org.uk/book [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/anns-recommended-reads$ http://www.clpe.org.uk/book [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/core-book-collections$ http://www.clpe.org.uk/publication/1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/multilingual-book-collection$ http://www.clpe.org.uk/page/3 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/poetry-collection$ http://www.clpe.org.uk/page/3 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/traditional-story-collection$ http://www.clpe.org.uk/page/3 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/books-for-under-3s$ http://www.clpe.org.uk/page/3 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/parents$ http://www.clpe.org.uk/page/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/classroom-book-area$ http://www.clpe.org.uk/page/3 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/useful-links$ http://www.clpe.org.uk/page/3 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/sharing-stories-conference$ http://www.clpe.org.uk/page/30 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/courses-for-parents$ http://www.clpe.org.uk/page/29 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/sharing-stories$ http://www.clpe.org.uk/page/30 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/london-childrens-bookswap-2013$ http://www.clpe.org.uk/page/33 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/bookstart$ http://www.clpe.org.uk/page/31 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/events-in-southwark$ http://www.clpe.org.uk/page/33 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/ppel$ http://www.clpe.org.uk/page/32 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/familystory-club$ http://www.clpe.org.uk/page/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^parents-families/useful-links$ http://www.clpe.org.uk/page/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/power-of-reading$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/creativity-projects$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/reader-in-the-writer$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^literacy-and-gender$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/understanding-spelling$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/the-primary-language-record$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/peckham-eaz$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/creativity-projects/assessing-creativity$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/creativity-projects/creativity-and-parents$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/literacy-and-gender/boys-and-reading$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^research/literacy-and-gender/boys-and-writing$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^literacy-and-gender/raising-boys-acheivement$ http://www.clpe.org.uk/page/44 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/core-book-collections/foundation-stage-core-books$ http://www.clpe.org.uk/library/core-book-collections/foundation-stage-core-books [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/core-book-collections/year-1-and-2-core-books$ http://www.clpe.org.uk/publication/1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/core-book-collections/year-3-and-4-core-books$ http://www.clpe.org.uk/publication/1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^library/core-book-collections/year-5-and-6-core-books$ http://www.clpe.org.uk/publication/1 [R=301,L]
+
+
+#CLPE SHOP
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/writing$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/reading_courses$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/writing_courses$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/creative_literacy_curriculum$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/poetry_courses$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/early_years$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/subject_leaders$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/new_courses$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/clpe_bookpacks$ http://www.clpe.org.uk/bookpack [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/poetry$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/spelling_and_phonics$ http://www.clpe.org.uk/bookpack [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/creativity$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/assessment$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/books_for_parents$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/teaching_language_and_literacy$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/subject_leaders/page/1$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/subject_leaders/page/2$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/courses$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/projects$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/early_years_foundation_stage$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/clpe_phonics_courses_and_training$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/publications$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/bookpacks$ http://www.clpe.org.uk/bookpack [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/english_subject_leaders$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/literacy_and_gender$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/reading$ http://www.clpe.org.uk/publication [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/shakespeare$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^department/conferences$ http://www.clpe.org.uk/course [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/bookpower_year_1/$ http://www.clpe.org.uk/publication/2 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/the_core_book_list/$ http://www.clpe.org.uk/publication/1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/book_based_reading_games/$ http://www.clpe.org.uk/publication/7 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/boys_on_the_margin/$ http://www.clpe.org.uk/publication/18 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/the_reader_in_the_writer/$ http://www.clpe.org.uk/publication/10 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/power_of_reading_project/$ http://www.clpe.org.uk/course/32 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/raising_achievement_in_writing/$ http://www.clpe.org.uk/course/16 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/power_of_reading_bookpack_foundation_stage/$ http://www.clpe.org.uk/bookpack/6 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/power_of_reading_bookpack_years_3_and_4/$ http://www.clpe.org.uk/bookpack/8 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/power_of_reading_bookpack_years_5_and_6/$ http://www.clpe.org.uk/bookpack/9 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/rhymeandsong/$ http://www.clpe.org.uk/course/28 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/storytalkplay/$ http://www.clpe.org.uk/course/29 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^supportingtransition/$ http://www.clpe.org.uk/course/30 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/the_power_of_reading_in_the_early_years/$ http://www.clpe.org.uk/course/27 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/achieving_excellence_in_the_early_years/$ http://www.clpe.org.uk/course/26 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/gaps_in_phonics_at_ks2_supporting_struggling_readers/$ http://www.clpe.org.uk/course/12 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/phonics_within_a_rich_reading_curriculum_nov_dec_2013_/$ http://www.clpe.org.uk/course/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/phonics_within_a_rich_reading_curriculum_jan_feb_2014_/$ http://www.clpe.org.uk/course/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/success_in_early_reading_bookpack_a/$ http://www.clpe.org.uk/bookpack/1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/success_in_early_reading_bookpack_b/$ http://www.clpe.org.uk/bookpack/2 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/success_in_early_reading_bookpacks_a_b_c_d/$ http://www.clpe.org.uk/bookpack/5 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/success_in_early_reading_bookpack_d/$ http://www.clpe.org.uk/bookpack/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/success_in_early_reading_bookpack_c/$ http://www.clpe.org.uk/bookpack/3 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/role_of_the_english_subject_leader/$ http://www.clpe.org.uk/course/31 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/the_power_of_reading_project/$ http://www.clpe.org.uk/course/32 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/poetryrightnow/$ http://www.clpe.org.uk/course/36 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/planningcreativelyks1/$ http://www.clpe.org.uk/course/20 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/planningcreativelyks2/$ http://www.clpe.org.uk/course/21 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/grammar_for_writing/$ http://www.clpe.org.uk/course/19 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/shakespeare/$ http://www.clpe.org.uk/course/23 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/shakespeare_schools_festival_-_3_workshops/$ http://www.clpe.org.uk/course/22 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/shakespeare_schools_festival_-_workshop_1/$ http://www.clpe.org.uk/course/22 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/shakespeare_schools_festival_-_workshop_2/$ http://www.clpe.org.uk/course/22 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/shakespeare_schools_festival_-_workshop_3/$ http://www.clpe.org.uk/course/22 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/bookpower3/$ http://www.clpe.org.uk/publication/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/bookpower_6/$ http://www.clpe.org.uk/publication/5 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/bookpower_year_2/$ http://www.clpe.org.uk/publication/3 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/boys_and_writing/$ http://www.clpe.org.uk/publication/11 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/reading_the_difference/$ http://www.clpe.org.uk/publication/19 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/developing_a_reading_for_pleasure_school/$ http://www.clpe.org.uk/course/38 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/teachingandlearning/$ http://www.clpe.org.uk/course/11 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/effective_spelling/$ http://www.clpe.org.uk/course/15 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/developingwritingks1/$ http://www.clpe.org.uk/course/17 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/developingwritingks2/$ http://www.clpe.org.uk/course/18 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/lire_dire_et_rire_-_using_french_picture_books_in_the_classrooom/$ http://www.clpe.org.uk/course/25 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/supporting_bilingual_children_s_literacy_achievement_/$ http://www.clpe.org.uk/course/33 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/lire_dire_et_rire_-_using_french_picture_books/$ http://www.clpe.org.uk/course/25 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/a_year_with_poetry/$ http://www.clpe.org.uk/publication/14 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/hands_on_poetry/$ http://www.clpe.org.uk/publication/15 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/understanding_spelling/$ http://www.clpe.org.uk/publication/16 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/whole-to-part_phonics/$ http://www.clpe.org.uk/publication/17 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule ^product/animating_literacy/$ http://www.clpe.org.uk/publication/20 [R=301,L]
+
+
+#SHORT URLS
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^poetryline$ http://www.poetryline.org.uk [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^foundationsoftalk$ http://shop.clpe.co.uk/product/foundationsoftalk/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^raisingachievement$ http://shop.clpe.co.uk/product/raising_achievement_in_writing/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^nqtinduction$ http://shop.clpe.co.uk/product/nqtinduction/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^taliteracy$ http://shop.clpe.co.uk/product/taliteracy/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^supportingtransition$ http://shop.clpe.co.uk/product/supportingtransition/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^teachingandlearning$ http://shop.clpe.co.uk/product/teachingandlearning/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^teachingandlearning$ http://shop.clpe.co.uk/product/teachingandlearning/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^groupguidedreadingks1$ http://shop.clpe.co.uk/product/groupguidedreadingks1/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^groupguidedreadingks2$ http://shop.clpe.co.uk/product/groupguidedreadingks2/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^usingqualitytexts$ http://shop.clpe.co.uk/product/usingqualitytexts/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^planningcreativelyks1$ http://shop.clpe.co.uk/product/planningcreativelyks1/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^planningcreativelyks2$ http://shop.clpe.co.uk/product/planningcreativelyks2/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^developingwritingks1$ http://shop.clpe.co.uk/product/developingwritingks1/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^developingwritingks2$ http://shop.clpe.co.uk/product/developingwritingks2/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^poetryrightnow$ http://shop.clpe.co.uk/product/poetryrightnow/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^digitalmedia$ http://shop.clpe.co.uk/product/using_digital_media_to_support_literacy_across_the_curriculum_training/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^tatalk$ http://shop.clpe.co.uk/product/taliteracy/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^treading$ http://shop.clpe.co.uk/product/taliteracy/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^tawriting$ http://shop.clpe.co.uk/product/taliteracy/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^shakespeare$ http://shop.clpe.co.uk/product/shakespeare/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^rhymeandsong$ http://shop.clpe.co.uk/product/rhymeandsong/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^storytalkplay$ http://shop.clpe.co.uk/product/storytalkplay/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^inset$ http://shop.clpe.co.uk/department/inset/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^consultancy$ http://shop.clpe.co.uk/department/inset/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^raisingachievementinwriting$ http://shop.clpe.co.uk/product/raising_achievement_in_writing/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^powerofreading$ http://www.clpe.org.uk/course/32 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^powerofwriting$ http://shop.clpe.co.uk/product/the_power_of_writing/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^englishsubjectleader$ http://shop.clpe.co.uk/product/role_of_the_english_subject_leader/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^earlyyears$ http://shop.clpe.co.uk/product/developing_reflective_practice_in_the_early_years/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^foundationsoftalk$ http://shop.clpe.co.uk/product/foundations_of_talk_and_literacy_project/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^poetryworkshops$ http://shop.clpe.co.uk/product/poetry_workshops_with_michael_rosen/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^phonics$ http://www.clpe.org.uk/course/4 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^taspecialist$ http://shop.clpe.co.uk/product/specialist_teaching_assistant_course/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^tahigherlevel$ http://shop.clpe.co.uk/product/higher_level_teaching_assistant_courses_/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^hlta$ http://shop.clpe.co.uk/product/higher_level_teaching_assistant_courses_/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^groupguidedreadingks2$ http://shop.clpe.co.uk/product/group_and_guided_reading/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^planningcreativelyks1$ http://shop.clpe.co.uk/product/planning_creatively_around_texts_in_ks1/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^planningcreativelyks2$ http://shop.clpe.co.uk/product/planning_creatively_around_texts_in_key_stage_2/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^developingwritingks1$ http://shop.clpe.co.uk/product/developing_writing_in_key_stage_1/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^developingwritingks2$ http://shop.clpe.co.uk/product/developing_writing_in_key_stage_2/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^poetryrightnow$ http://shop.clpe.co.uk/product/poetry_workshops_with_michael_rosen/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^digitalmedia$ http://shop.clpe.co.uk/product/using_digital_media_to_support_literacy_across_the_curriculum/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^tareading$ http://shop.clpe.co.uk/product/introduction_to_teaching_reading_for_teaching_assistantsta/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^tawriting$ http://shop.clpe.co.uk/product/introduction_to_teaching_writing_for_teaching_assistantsta/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^inset$ http://shop.clpe.co.uk/department/inset_consultancy/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^consultancy$ http://shop.clpe.co.uk/department/inset_consultancy/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^devrefpractice$ http://shop.clpe.co.uk/product/developing_reflective_practice_in_the_early_years/ [R=301,L]
+
+
+#CLPE.CO.UK SHORT URLS
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^bookswap$ http://www.clpe.org.uk/parents-families/london-childrens-bookswap-2012 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^bookswap$ http://www.clpe.org.uk/parents-families/london-childrens-bookswap-2012 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^sharingstories$ http://www.clpe.org.uk/parents-families/sharing-stories [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule ^powerofreadingpages$ http://por.clpe.org.uk [R=301,L]
+
+
+
+
+
+
+#CATCH ALL
+
+RewriteCond %{HTTP_HOST} ^(www\.)?clpe\.co\.uk$
+RewriteRule (.*) http://www.clpe.org.uk/$1 [R=301,L] 
+
+RewriteCond %{HTTP_HOST} ^clpe\.modliadev\.com$
+RewriteRule (.*) http://www.clpe.org.uk/$1 [R=301,L] 
+
+RewriteCond %{HTTP_HOST} ^shop\.clpe\.co\.uk$
+RewriteRule (.*) http://www.clpe.org.uk/$1 [R=301,L] 
+
+RewriteCond %{HTTP_HOST} ^news\.clpe\.co\.uk$
+RewriteRule (.*) http://www.clpe.org.uk/news [R=301,L] 
+
+
+
+RewriteCond %{HTTP_HOST} ^www\.clpe\.org\.uk$
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L]
+
+
+#YII STUFF
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
