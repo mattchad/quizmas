@@ -7,6 +7,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
 {
     
 	private $clients;
+	private $buzzers_locked = false;
 	private $available_players = array();
 	private $current_players = array();
 
@@ -38,7 +39,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
       	//Add the current players that have joined before we arrived. 
       	foreach($this->current_players as $Player)
       	{
-      		$conn->send(json_encode(array('type' => 'add_player', 'player'=>$Player)));
+      		$conn->send(json_encode(array('type' => 'new_player', 'player'=>$Player)));
       	}
         echo "New connection! ({$conn->resourceId})\n";
     }
@@ -72,7 +73,37 @@ class Message extends CActiveRecord implements MessageComponentInterface
         		echo $player_chosen->first_name . ' has joined the game';
         		
         		//Notify other players that someone else has joined the game.
-        		$this->sendToAll(json_encode(array('type'=>'add_player', 'player' => $player_chosen)));
+        		$this->sendToAll(json_encode(array('type'=>'new_player', 'player' => $player_chosen)));
+        		break;
+        	}
+        	case 'buzzer':
+        	{
+        		//A player pressed their buzzer
+        		$Player = $this->resourceIdToPlayer($from->resourceId);
+        		
+        		if(!$this->buzzers_locked)
+        		{
+	        		//Post a message on the server
+	        		echo $Player->first_name . " Buzzed! - Locking Buzzers";
+
+        			$this->buzzers_locked = true;
+	        		$this->sendToAll(json_encode(array('type'=>'player_buzzed', 'player'=>$Player)));
+	        		$this->sendToAll(json_encode(array('type'=>'lock_buzzer')));
+        		}
+        		else
+        		{
+	        		echo $Player->first_name . " while buzzers locked";
+        		}
+        		
+        		//$this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
+        		//echo "Unlocking Buzzers \n";
+        		break;
+        	}
+        	case 'unlock_buzzer':
+        	{
+        		$this->buzzers_locked = false;
+        		$this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
+        		echo "Unlocking Buzzers";
         		break;
         	}
         	default:
@@ -92,31 +123,30 @@ class Message extends CActiveRecord implements MessageComponentInterface
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
         
-        foreach($this->current_players as &$Player)
-        {
-        	if($Player->resource_id == $conn->resourceId)
-        	{
-        		//Let all the other users know that we have one less player. 
-        		$this->sendToAll(json_encode(array('type'=>'remove_player', 'player' => $Player)));
-        		
-        		//Detatch the player from the resourse ID for that connection
-        		$Player->resource_id = null;
-        		
-        		//Post a message on the server
-        		$alert = $Player->first_name . ' has left the game';
-        		
-        		//Move the player back into the available players list.
-        		$this->available_players[$Player->id] = $Player;
-        		unset($this->current_players[$Player->id]);
-        	}
-        }
+        $Player = $this->resourceIdToPlayer($conn->resourceId);
         
-        if(!strlen($alert))
+        if($Player !== null)
         {
-        	echo 'Disconnected without choosing a player';
+	        //Let all the other users know that we have one less player. 
+			$this->sendToAll(json_encode(array('type'=>'player_disconnected', 'player' => $Player)));
+			
+			//Detatch the player from the resourse ID for that connection
+			$Player->resource_id = null;
+			
+			//Post a message on the server
+			$alert = $Player->first_name . ' has left the game';
+			
+			//Move the player back into the available players list.
+			$this->available_players[$Player->id] = $Player;
+			unset($this->current_players[$Player->id]);
+		}
+        
+        if(!strlen(trim($alert)))
+        {
+        	$alert = 'Disconnected without choosing a player';
         }
 
-        echo " (" . $conn->resourceId . ")\n";
+        echo $alert . " (" . $conn->resourceId . ")\n";
     }
 
     public function onError(ConnectionInterface $conn, \Exception $e)
@@ -134,6 +164,18 @@ class Message extends CActiveRecord implements MessageComponentInterface
         {
             $client->send($msg);
         }
+    }
+    
+    private function resourceIdToPlayer($resource_id)
+    {
+    	foreach($this->current_players as &$Player)
+        {
+        	if($Player->resource_id == $resource_id)
+        	{
+        		return $Player;
+        	}
+        }
+        return null;
     }
 
 

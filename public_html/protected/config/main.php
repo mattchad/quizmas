@@ -63,6 +63,8 @@ return array(
 			'showScriptName'=>false,
 			'rules'=>array(
 				''	=> 'site/index',
+				'/scoreboard'	=> 'site/scoreboard',
+				'/buzzer'	=> 'site/buzzer',
 
 				/* '<category:\w+>/<slug:[a-z\-]+>-<id:\d+>' => 'blog/view', */
 				/* '<controller:\w+>/<id:\d+>'=>'<controller>/view',

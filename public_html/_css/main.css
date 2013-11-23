@@ -2,8 +2,8 @@ body
 {
 	/* font-family: "ff-tisa-web-pro"; */
 	font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	background: #333b41;
-	color: #FFFFFF;
+	background: #FFFFFF;
+	color: #363636;
 	font-weight: 300;
 }
 
@@ -14,9 +14,20 @@ body
 	width: 100%;
 }
 
-#buzzer
+#buzzer a
 {
-	
+	font-size: 100px;
+	font-weight: bold;
+	background: green;
+	display: block;
+	color: #FFFFFF;
+	text-decoration: none;
+	text-align: center;
+}
+
+#buzzer .locked
+{
+	background: red;
 }
 
 #choose_player
@@ -34,11 +45,45 @@ body
 .player
 {
 	float: left;
-	width: 100px;
-	height: 100px;
+	width: 200px;
+	height: 200px;
 	text-align: center;
-	line-height: 100px;
 	border: 1px solid #FFFFFF;
 	color: #FFFFFF;
 	background: red;
+}
+
+.buzzed
+{
+	background: green;
+}
+
+/* NAV */
+
+.nav
+{
+	list-style-type: none;
+	padding: 10px;
+	margin: 0px;
+}
+
+.nav li
+{
+	margin-bottom: 10px;
+}
+
+.nav li a
+{
+	display: block;
+	padding: 30px;
+	font-size: 30px;
+	color: #FFFFFF;
+	text-align: center;
+	border: 2px solid #FFFFFF;
+	background: #1863AE;
+}
+
+.nav .buzzer a
+{
+	background: #8B55BF;
 }

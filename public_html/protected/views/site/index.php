@@ -1,10 +1,6 @@
-<h1>Quizmas!</h1>
-<div id="choose_player" class="screen">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</div>
-<div id="current_players" class="screen">
-
-</div>
-<div id="buzzer" class="screen">
-
-</div>
+<ul class="nav">
+	<li><a href="/scoreboard">Scoreboard</a></li>
+	<li class="buzzer"><a href="/buzzer">Buzzer</a></li>
+</ul>

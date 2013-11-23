@@ -40,7 +40,7 @@ class User extends CActiveRecord
 			array('email_address', 'email'),
 			array('email_address', 'unique', 'message'=>'The email address {value} is already registered'),
 			
-			array('hash, password_repeat', 'safe'),
+			array('hash, password_repeat, score', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, email_address, password', 'safe', 'on'=>'search'),

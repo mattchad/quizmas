@@ -13,7 +13,7 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index'),
+				'actions'=>array('index', 'buzzer', 'scoreboard'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -41,6 +41,21 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		$this->render('index');
+	}
+	
+	public function actionBuzzer()
+	{
+		Yii::app()->clientScript->registerScriptFile('/_js/buzzer.js');
+		$this->render('buzzer');
+	}
+	
+	public function actionScoreboard()
+	{
+		Yii::app()->clientScript->registerScriptFile('/_js/scoreboard.js');
+		
+		$Players = User::model()->findAll(array('order'=>'first_name ASC'));
+		
+		$this->render('scoreboard', array('Players'=>$Players));
 	}
 	
 	public function actionError()
