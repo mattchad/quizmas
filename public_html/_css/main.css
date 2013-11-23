@@ -6,3 +6,39 @@ body
 	color: #FFFFFF;
 	font-weight: 300;
 }
+
+.screen
+{
+	display: none;
+	overflow: hidden;
+	width: 100%;
+}
+
+#buzzer
+{
+	
+}
+
+#choose_player
+{
+	min-height: 400px;
+	background: blue;
+}
+
+#current_players
+{
+	min-height: 400px;
+	background: green;
+}
+
+.player
+{
+	float: left;
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	background: red;
+}

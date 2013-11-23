@@ -1,11 +1,12 @@
 <?php
 $db = array(
-	'connectionString' => 'mysql:host=localhost;dbname=clpe_clpe',
+	'connectionString' => 'mysql:host=localhost;dbname=quizmas',
 	'emulatePrepare' => true,
-	'username' => 'clpe_clpe',
-	'password' => 'JmzS3e5lXqW3',
+	'username' => 'root',
+	'password' => '',
 	'charset' => 'utf8',
 );
+
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',

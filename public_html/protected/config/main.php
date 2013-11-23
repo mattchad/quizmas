@@ -1,6 +1,6 @@
 <?php
 $db = array(
-	'connectionString' => 'mysql:host=localhost;dbname=clpe',
+	'connectionString' => 'mysql:host=localhost;dbname=quizmas',
 	'emulatePrepare' => true,
 	'username' => 'root',
 	'password' => '',

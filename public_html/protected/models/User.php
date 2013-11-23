@@ -1,26 +1,12 @@
 <?php
 
-/**
- * This is the model class for table "user".
- *
- * The followings are the available columns in table 'user':
- * @property string $id
- * @property string $email_address
- * @property string $password
- */
 class User extends CActiveRecord
 {	
 	const ROLE_USER = 10;
-	const ROLE_EDITOR = 20;
 	const ROLE_ADMIN = 30;
 	
 	public $password_repeat;
 	
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return User the static model class
-	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -54,7 +40,7 @@ class User extends CActiveRecord
 			array('email_address', 'email'),
 			array('email_address', 'unique', 'message'=>'The email address {value} is already registered'),
 			
-			array('hash, password_repeat, role, address_id', 'safe'),
+			array('hash, password_repeat', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, email_address, password', 'safe', 'on'=>'search'),
@@ -68,10 +54,7 @@ class User extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-			'address' => array(self::BELONGS_TO, 'Address', 'address_id'),
-			'attendances' => array(self::HAS_MANY, 'Attendee', 'user_id'),
-		);
+		return array();
 	}
 
 	/**
@@ -93,27 +76,5 @@ class User extends CActiveRecord
 	public function getFullname()
 	{
     	return $this->first_name . ' ' . $this->last_name;
-	}
-	
-	public function beforeSave()
-	{
-		$this->password = sha1($this->password);
-		foreach(Attendee::model()->findAllByAttributes(array('email_address'=>$this->email_address), array('condition'=>'user_id IS NULL')) as $Attendee)
-		{
-            $Attendee->user_id = $this->id;
-            $Attendee->save(false);
-		}
-		return true;
-	}
-	
-	public function sendEmailVerification()
-	{
-		$email_body = "Hello,\n\r";
-		$email_body .= "Thank you for registering on the CLPE website. To complete your registration you need to verify your email address, click the link below to do this.\n\r";
-		$email_body .= Yii::app()->request->getBaseUrl(true) . "/user/verify/" . $this->hash . "\n\r";
-		$email_body .= "Thanks,\n\r";
-		$email_body .= "CLPE";
-		
-		sendEmail("CLPE Email verification", $email_body, $this->email_address);
 	}
 }
