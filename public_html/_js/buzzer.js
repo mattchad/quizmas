@@ -74,13 +74,13 @@ $(function ()
 				case 'lock_buzzer':
 				{
 					//We've been told that a player has left the game, remove them to the current player list. 
-					$('#buzzer a').addClass('locked');
+					$('#buzzer a').addClass('locked').html('');
 					break;
 				}
 				case 'unlock_buzzer':
 				{
 					//We've been told that a player has left the game, remove them to the current player list. 
-					$('#buzzer a').removeClass('locked');
+					$('#buzzer a').removeClass('locked').html('Press me');
 					break;
 				}
 				default:

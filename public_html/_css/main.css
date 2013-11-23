@@ -16,13 +16,14 @@ body
 
 #buzzer a
 {
-	font-size: 100px;
+	font-size: 50px;
 	font-weight: bold;
 	background: green;
 	display: block;
 	color: #FFFFFF;
 	text-decoration: none;
 	text-align: center;
+	text-transform: uppercase;
 }
 
 #buzzer .locked
