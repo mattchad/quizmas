@@ -7,11 +7,11 @@ body
 	font-weight: 300;
 }
 
+/* BUZZER */
+
 .screen
 {
 	display: none;
-	overflow: hidden;
-	width: 100%;
 }
 
 #buzzer a
@@ -31,19 +31,15 @@ body
 	background: red;
 }
 
-#choose_player
-{
-	min-height: 400px;
-	background: blue;
-}
-
 #current_players
 {
 	min-height: 400px;
 	background: green;
 }
 
-.player
+/* SCOREBOARD */
+
+#scoreboard .player
 {
 	float: left;
 	width: 200px;
@@ -54,9 +50,17 @@ body
 	background: red;
 }
 
-.buzzed
+#scoreboard .buzzed
 {
 	background: green;
+}
+
+/* QUIZMASTER */
+
+#quizmaster .controls
+{
+	list-style-type: none;
+	border: 
 }
 
 /* NAV */
@@ -64,27 +68,69 @@ body
 .nav
 {
 	list-style-type: none;
-	padding: 10px;
+	padding: 5px;
 	margin: 0px;
 }
 
 .nav li
 {
-	margin-bottom: 10px;
-}
-
-.nav li a
-{
-	display: block;
-	padding: 30px;
+	line-height: 50px;
 	font-size: 30px;
 	color: #FFFFFF;
 	text-align: center;
 	border: 2px solid #FFFFFF;
 	background: #1863AE;
+	font-weight: bold;
+	text-decoration: none;
+	margin-bottom: 5px;
+	position: relative;
 }
 
-.nav .buzzer a
+.nav li:nth-child(5n+2)
+{
+	background: #EC0972;
+}
+
+.nav li:nth-child(5n+3)
 {
 	background: #8B55BF;
+}
+
+.nav li:nth-child(5n+4)
+{
+	background: #5EBCE5;
+}
+
+.nav li:nth-child(5n+5)
+{
+	background: #FF6800;
+}
+
+.nav li a,
+.nav li span
+{
+	display: block;
+	padding: 0px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.nav li .up,
+.nav li .down
+{
+	position: absolute;
+	left: 10px;
+	top: 0px;
+	padding: 0px;
+}
+
+.nav li .down
+{
+	left: auto;
+	right: 10px;
+}
+
+.nav .spacer_bottom
+{
+	margin-bottom: 30px;
 }

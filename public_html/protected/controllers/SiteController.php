@@ -13,7 +13,7 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index', 'buzzer', 'scoreboard'),
+				'actions'=>array('index', 'buzzer', 'scoreboard', 'quizmaster'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -53,9 +53,18 @@ class SiteController extends Controller
 	{
 		Yii::app()->clientScript->registerScriptFile('/_js/scoreboard.js');
 		
-		$Players = User::model()->findAll(array('order'=>'first_name ASC'));
+		$Players = User::model()->findAll(array('order'=>'last_name ASC'));
 		
 		$this->render('scoreboard', array('Players'=>$Players));
+	}
+	
+	public function actionQuizmaster()
+	{
+		Yii::app()->clientScript->registerScriptFile('/_js/quizmaster.js');
+		
+		$Players = User::model()->findAll(array('order'=>'last_name ASC'));
+		
+		$this->render('quizmaster', array('Players'=>$Players));
 	}
 	
 	public function actionError()

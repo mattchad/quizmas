@@ -29,35 +29,6 @@ $(function ()
 			
 			switch(message.type)
 			{
-				case 'new_player':
-				{
-					//We've been told that a player has joined the game, add them to the current player list. 
-					$('#player_' + message.player.id).find('.connected').html('Yes');
-					
-					break;
-				}
-				case 'player_disconnected':
-				{
-					//We've been told that a player has left the game, remove them to the current player list. 
-					$('#player_' + message.player.id).find('.connected').html('No');
-					break;
-				}
-				case 'player_buzzed':
-				{
-					//We've been told that a player has left the game, remove them to the current player list. 
-					$('#player_' + message.player.id).addClass('buzzed');
-					
-					//Can't do $('#ping').play() for some reason. 
-					document.getElementById('ping').play();
-					break;
-				}
-				case 'unlock_buzzer':
-				{
-					//We've been told that a player has left the game, remove them to the current player list. 
-					$('#buzzer a').removeClass('locked');
-					$('.player').removeClass('buzzed');
-					break;
-				}
 				default:
 				{
 					//$('body').append($('<p/>').html(message.players[0]));
@@ -82,5 +53,10 @@ $(function ()
 	
 	//JQUERY EVENTS
 			
+		$(document).on('click', '#unlock_buzzers', function(e)
+		{
+			conn.send(JSON.stringify({ type: 'unlock_buzzer' }));
+			return false;
+		});
 });
 	

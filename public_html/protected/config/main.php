@@ -65,6 +65,7 @@ return array(
 				''	=> 'site/index',
 				'/scoreboard'	=> 'site/scoreboard',
 				'/buzzer'	=> 'site/buzzer',
+				'/quizmaster'	=> 'site/quizmaster',
 
 				/* '<category:\w+>/<slug:[a-z\-]+>-<id:\d+>' => 'blog/view', */
 				/* '<controller:\w+>/<id:\d+>'=>'<controller>/view',

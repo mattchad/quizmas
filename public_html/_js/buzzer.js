@@ -48,8 +48,8 @@ $(function ()
 					{
 						//Display all players that are available
 						$('#choose_player').append(
-							$('<p>').append(
-								$('<a>').addClass('player').data('player_id', message.available_players[i].id).attr('href', '#').html(message.available_players[i].first_name)
+							$('<li>').append(
+								$('<a>').data('player_id', message.available_players[i].id).attr('href', '#').html(message.available_players[i].last_name)
 							)
 						);
 					}
@@ -73,13 +73,11 @@ $(function ()
 				} */
 				case 'lock_buzzer':
 				{
-					//We've been told that a player has left the game, remove them to the current player list. 
 					$('#buzzer a').addClass('locked').html('');
 					break;
 				}
 				case 'unlock_buzzer':
 				{
-					//We've been told that a player has left the game, remove them to the current player list. 
 					$('#buzzer a').removeClass('locked').html('Press me');
 					break;
 				}
