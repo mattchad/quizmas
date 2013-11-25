@@ -71,7 +71,9 @@ $(function ()
 					$('#player_' + message.player_id).find('.score').html(points+1);
 					
 					//Can't do $('#add').play() for some reason. 
-					document.getElementById('add').play();
+					var audio = document.getElementById('add');
+					audio.currentTime = 0;
+					audio.play();
 					break;
 				}
 				case 'subtract_point':
@@ -80,7 +82,10 @@ $(function ()
 					$('#player_' + message.player_id).find('.score').html(points-1);
 	
 					//Can't do $('#subtract').play() for some reason. 
-					document.getElementById('subtract').play();
+					var audio = document.getElementById('subtract');
+					audio.currentTime = 0;
+					audio.play();
+					
 					break;
 				}
 				default:
