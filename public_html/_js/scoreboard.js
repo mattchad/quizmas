@@ -7,6 +7,14 @@ $(function ()
 			conn = new WebSocket('ws://192.168.0.109:8080');
 		}
 		
+		function resizePlayers()
+		{
+			$('#scoreboard .player').each(function(i,e)
+			{
+				$(e).height($(window).height()/2);
+			});
+		}
+		
 	//INITIATE
 	
 		//Initiate the connection variable
@@ -14,6 +22,8 @@ $(function ()
 		
 		//Connect to the server
 		connectToSocket();
+		
+		resizePlayers();
 	
 	//SOCKET EVENTS
 		
@@ -44,18 +54,33 @@ $(function ()
 				}
 				case 'player_buzzed':
 				{
-					//We've been told that a player has left the game, remove them to the current player list. 
-					$('#player_' + message.player.id).addClass('buzzed');
-					
-					//Can't do $('#ping').play() for some reason. 
-					document.getElementById('ping').play();
+					$('#player_' + message.player.id + ' .board').addClass('buzzed');
+
+					document.getElementById('player_' + message.player.id + '_sound').play();
 					break;
 				}
 				case 'unlock_buzzer':
 				{
-					//We've been told that a player has left the game, remove them to the current player list. 
 					$('#buzzer a').removeClass('locked');
-					$('.player').removeClass('buzzed');
+					$('.player .buzzed').removeClass('buzzed');
+					break;
+				}
+				case 'add_point':
+				{
+					var points = parseInt( $('#player_' + message.player_id).find('.score').html() );
+					$('#player_' + message.player_id).find('.score').html(points+1);
+					
+					//Can't do $('#add').play() for some reason. 
+					document.getElementById('add').play();
+					break;
+				}
+				case 'subtract_point':
+				{
+					var points = parseInt( $('#player_' + message.player_id).find('.score').html() );
+					$('#player_' + message.player_id).find('.score').html(points-1);
+	
+					//Can't do $('#subtract').play() for some reason. 
+					document.getElementById('subtract').play();
 					break;
 				}
 				default:
@@ -79,8 +104,13 @@ $(function ()
 				location.reload(true);
 			}
 		}, 1000);
+		
+		$(window).resize(function()
+		{
+			resizePlayers();
+		});
 	
 	//JQUERY EVENTS
-			
+	
 });
 	

@@ -23,6 +23,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
         	$temp_player->id = $Player->id;
         	$temp_player->first_name = $Player->first_name;
         	$temp_player->last_name = $Player->last_name;
+        	$temp_player->points = $Player->points;
         	$temp_player->resource_id = null;
         	$this->available_players[$Player->id] = $temp_player;
         }
@@ -35,6 +36,11 @@ class Message extends CActiveRecord implements MessageComponentInterface
         
         // New connection, send it the current set of matches
       	$conn->send(json_encode(array('type' => 'choose_player', 'available_players'=>$this->available_players)));
+      	
+      	if($this->buzzers_locked)
+      	{
+      		$conn->send(json_encode(array('type' => 'lock_buzzer')));
+      	}
       	
       	//Add the current players that have joined before we arrived. 
       	foreach($this->current_players as $Player)
@@ -104,6 +110,32 @@ class Message extends CActiveRecord implements MessageComponentInterface
         		$this->buzzers_locked = false;
         		$this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
         		echo "Unlocking Buzzers";
+        		break;
+        	}
+        	case 'add_point':
+        	{
+        		$Player = User::model()->findByPk($message->player_id);
+        		if($Player !== null)
+        		{
+        			$Player->points++; 
+        			$Player->save(false);
+        			
+        			$this->sendToAll(json_encode(array('type'=>'add_point', 'player_id' => $message->player_id)));
+        			echo "Adding a point to " . $Player->first_name . '\'s score';
+        		}
+        		break;
+        	}
+        	case 'subtract_point':
+        	{
+        		$Player = User::model()->findByPk($message->player_id);
+        		if($Player !== null)
+        		{
+        			$Player->points--; 
+        			$Player->save(false);
+        			
+        			$this->sendToAll(json_encode(array('type'=>'subtract_point', 'player_id' => $message->player_id)));
+        			echo "Removing a point from " . $Player->first_name . '\'s score';
+        		}
         		break;
         	}
         	default:

@@ -48,7 +48,7 @@ $(function ()
 					{
 						//Display all players that are available
 						$('#choose_player').append(
-							$('<li>').append(
+							$('<li>').attr('id', 'player_' + message.available_players[i].id).append(
 								$('<a>').data('player_id', message.available_players[i].id).attr('href', '#').html(message.available_players[i].last_name)
 							)
 						);
@@ -56,21 +56,22 @@ $(function ()
 					
 					break;
 				}
-				/* case 'new_player':
+				case 'new_player':
 				{
-					//We've been told that a player has joined the game, add them to the current player list. 
-					$('#current_players').append(
-						$('<p>').addClass('player').html(message.player.first_name).data('player_id', message.player.id).attr('id', 'current_player_' + message.player.id)
-					);
-					
+					//We've been told that a player has joined the game, remove them to the choose player screen. 
+					$('#player_' + message.player.id).remove();
 					break;
 				}
 				case 'player_disconnected':
 				{
-					//We've been told that a player has left the game, remove them to the current player list. 
-					$('#current_player_' + message.player.id).remove();
+					//We've been told that a player has left the game, add them to the choose player screen. 
+					$('#choose_player').append(
+						$('<li>').attr('id', 'player_' + message.player.id).append(
+							$('<a>').data('player_id', message.player.id).attr('href', '#').html(message.player.last_name)
+						)
+					);
 					break;
-				} */
+				}
 				case 'lock_buzzer':
 				{
 					$('#buzzer a').addClass('locked').html('');
@@ -121,8 +122,10 @@ $(function ()
 				return false;
 			});
 			
-			$(document).on('click', '#buzzer a', function(e)
+			$(document).on('touchstart click', '#buzzer a', function(e)
 			{
+				e.stopPropagation();
+				
 				conn.send(JSON.stringify({ type: 'buzzer' }));
 				return false;
 			});

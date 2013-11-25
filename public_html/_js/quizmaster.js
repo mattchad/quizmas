@@ -29,6 +29,16 @@ $(function ()
 			
 			switch(message.type)
 			{
+				case 'lock_buzzer':
+				{
+					$('#unlock_buzzers').html('Unlock Buzzers');
+					break;
+				}
+				case 'unlock_buzzer':
+				{
+					$('#unlock_buzzers').html('Buzzers Active');
+					break;
+				}
 				default:
 				{
 					//$('body').append($('<p/>').html(message.players[0]));
@@ -53,9 +63,29 @@ $(function ()
 	
 	//JQUERY EVENTS
 			
-		$(document).on('click', '#unlock_buzzers', function(e)
+		$(document).on('touchstart click', '#unlock_buzzers', function(e)
 		{
+			e.stopPropagation();
+			
 			conn.send(JSON.stringify({ type: 'unlock_buzzer' }));
+			return false;
+		});
+		
+		$(document).on('touchstart click', '.player .add', function(e)
+		{
+			e.stopPropagation();
+			
+			var player = $(this).closest('.player');
+			conn.send(JSON.stringify({ type: 'add_point', player_id: $(player).data('id') }));
+			return false;
+		});
+		
+		$(document).on('touchstart click', '.player .subtract', function(e)
+		{
+			e.stopPropagation();
+			
+			var player = $(this).closest('.player');
+			conn.send(JSON.stringify({ type: 'subtract_point', player_id: $(player).data('id') }));
 			return false;
 		});
 });

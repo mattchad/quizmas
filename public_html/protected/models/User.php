@@ -29,18 +29,17 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('first_name, last_name', 'length', 'min'=>3, 'max'=>50),
-			array('position', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>20, 'except'=>'edit_user'),
 			array('password','ext.SPasswordValidator', 'up' => 0, 'low' => 1, 'digit'=>1, 'spec'=>0, 'min' => 6, 'max' => 21, 'except'=>'edit_user'),
 			array('password', 'compare', 'except'=>'edit_user'),
 			
-			array('first_name, last_name, position, email_address', 'required'),
+			array('first_name, last_name, email_address', 'required'),
 			array('password', 'required', 'except'=>'edit_user'),
 			
 			array('email_address', 'email'),
 			array('email_address', 'unique', 'message'=>'The email address {value} is already registered'),
 			
-			array('hash, password_repeat, score', 'safe'),
+			array('hash, password_repeat, points', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, email_address, password', 'safe', 'on'=>'search'),
