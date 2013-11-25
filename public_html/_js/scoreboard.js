@@ -54,7 +54,7 @@ $(function ()
 				}
 				case 'player_buzzed':
 				{
-					$('#player_' + message.player.id + ' .board').addClass('buzzed');
+					$('#player_' + message.player.id).addClass('buzzed');
 
 					document.getElementById('player_' + message.player.id + '_sound').play();
 					break;
@@ -62,7 +62,8 @@ $(function ()
 				case 'unlock_buzzer':
 				{
 					$('#buzzer a').removeClass('locked');
-					$('.player .buzzed').removeClass('buzzed');
+					$('.buzzed').removeClass('buzzed');
+					$('.player .time').html('');
 					break;
 				}
 				case 'add_point':
@@ -87,6 +88,19 @@ $(function ()
 					audio.play();
 					
 					break;
+				}
+				case 'player_buzzed_late':
+				{
+					var player = $('#player_' + message.player.id);
+					
+					if(!$(player).hasClass('buzzed'))
+					{
+						var time = $('#player_' + message.player.id).find('.time');
+						if(!$(time).html().length)
+						{
+							$(time).html(' + ' + message.time + ' s');
+						}
+					}
 				}
 				default:
 				{

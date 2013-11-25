@@ -80,7 +80,7 @@ body
 	text-transform: uppercase;
 }
 
-#scoreboard .player .buzzed
+#scoreboard .buzzed .board
 {
 	background: #FEDF84;
 }

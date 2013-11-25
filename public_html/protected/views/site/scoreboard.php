@@ -8,7 +8,7 @@
 			<p class="photo"><img src="/_images/dbp.jpg" /></p>
 			<div class="board">
 				<p class="score"><?php echo $Player->points;?></p>
-				<p class="name"><?php echo $Player->last_name; ?></p>
+				<p class="name"><?php echo $Player->last_name; ?><span class="time"></span></p>
 			</div>
 			<audio id="player_<?php echo $Player->id; ?>_sound" preload="auto">
 				<source src="/_sounds/player_<?php echo $Player->id; ?>.ogg" type="audio/ogg" />

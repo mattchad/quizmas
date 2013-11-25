@@ -7,7 +7,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
 {
     
 	private $clients;
-	private $buzzers_locked = false;
+	private $buzzers_locked = 0;
 	private $available_players = array();
 	private $current_players = array();
 
@@ -92,13 +92,15 @@ class Message extends CActiveRecord implements MessageComponentInterface
 	        		//Post a message on the server
 	        		echo $Player->first_name . " Buzzed! - Locking Buzzers";
 
-        			$this->buzzers_locked = true;
+        			$this->buzzers_locked = microtime(true);
 	        		$this->sendToAll(json_encode(array('type'=>'player_buzzed', 'player'=>$Player)));
 	        		$this->sendToAll(json_encode(array('type'=>'lock_buzzer')));
         		}
         		else
         		{
-	        		echo $Player->first_name . " while buzzers locked";
+        			$delay = number_format((microtime(true) - $this->buzzers_locked), 3);
+	        		$this->sendToAll(json_encode(array('type'=>'player_buzzed_late', 'player'=>$Player, 'time'=> $delay)));
+	        		echo $Player->first_name . " buzzed " . $delay . " seconds late";
         		}
         		
         		//$this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
@@ -107,7 +109,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
         	}
         	case 'unlock_buzzer':
         	{
-        		$this->buzzers_locked = false;
+        		$this->buzzers_locked = 0;
         		$this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
         		echo "Unlocking Buzzers";
         		break;
