@@ -11,6 +11,7 @@
 	
 	<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 	<?php Yii::app()->clientScript->registerScriptFile('/_js/jquery.fancybox.pack.js'); ?>
+	<?php Yii::app()->clientScript->registerScriptFile('/_js/jquery.isotope.min.js'); ?>
 	<?php Yii::app()->clientScript->registerScriptFile('/_js/webfonts.js'); ?>
 	
 	<title>Quizmas!</title>

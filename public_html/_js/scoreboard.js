@@ -1,4 +1,4 @@
-$(function ()
+$(document).ready(function()
 {
 	//FUNCTIONS
 	
@@ -9,10 +9,14 @@ $(function ()
 		
 		function resizePlayers()
 		{
+			$('#scoreboard').height($(window).height()).width($(window).width());
+			
 			$('#scoreboard .player').each(function(i,e)
 			{
 				$(e).height($(window).height()/2);
 			});
+			
+			$('#scoreboard').isotope('reLayout')
 		}
 		
 	//INITIATE
@@ -24,6 +28,23 @@ $(function ()
 		connectToSocket();
 		
 		resizePlayers();
+		
+		$('#scoreboard').isotope({
+			masonry:
+			{
+				itemSelector: '.player',
+			},
+			getSortData:
+			{
+				number : function ( elem )
+				{
+					return parseInt( $(elem).find('.score').text() );
+				}
+			},
+			sortBy: 'number',
+			sortAscending: false
+		});
+		
 	
 	//SOCKET EVENTS
 		
@@ -76,6 +97,8 @@ $(function ()
 					audio.currentTime = 0;
 					audio.play();
 					break;
+					
+					//Figure out where this player should be with their points. 
 				}
 				case 'subtract_point':
 				{
@@ -131,5 +154,13 @@ $(function ()
 	
 	//JQUERY EVENTS
 	
+	$(document).on('click', 'div', function()
+	{
+		/* var player_1 = $('#scoreboard .player:eq(2)').clone();;
+			$('#scoreboard').masonry('remove', $('#scoreboard .player:eq(2)'));
+		
+		$('#scoreboard').prepend($(player_1));
+		$('#scoreboard').masonry('prepended', $(player_1));*/
+	});
 });
 	
