@@ -15,8 +15,10 @@ $(document).ready(function()
 			{
 				$(e).height($(window).height()/2);
 			});
+			$('#container').isotope({ sortBy : 'symbol' });
 			
 			$('#scoreboard').isotope('reLayout')
+
 		}
 		
 	//INITIATE
