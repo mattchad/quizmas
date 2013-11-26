@@ -4,7 +4,7 @@ $(function ()
 	
 		function connectToSocket()
 		{
-			conn = new WebSocket('ws://192.168.0.109:8080');
+			conn = new WebSocket('ws://' + server_ip_address + ':8080');
 		}
 		
 	//INITIATE
