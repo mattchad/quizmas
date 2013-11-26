@@ -13,8 +13,10 @@ $(document).ready(function()
 			
 			$('#scoreboard .player').each(function(i,e)
 			{
-				$(e).height($(window).height()/2);
+				$(e).height(Math.floor($(window).height()/2)).width(Math.floor($(window).width()/5));
 			});
+			
+			$('#scoreboard').isotope( 'reLayout' );
 		}
 		
 		function reorderPlayers()

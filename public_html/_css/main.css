@@ -3,6 +3,7 @@ body
 	/* font-family: "ff-tisa-web-pro"; */
 	font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background: #FFFFFF;
+	background: #006631;
 	color: #363636;
 	font-weight: 300;
 }
@@ -46,7 +47,6 @@ body
 	height: 100%;
 	text-align: center;
 	color: #FFFFFF;
-	background: #CCCCCC;
 	position: relative;
 	overflow: hidden;
 }
@@ -62,7 +62,7 @@ body
 
 #scoreboard .player .photo img
 {
-	width: 100%;
+	width: 80%;
 }
 
 #scoreboard .player .board
