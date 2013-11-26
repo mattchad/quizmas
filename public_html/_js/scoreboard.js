@@ -15,10 +15,15 @@ $(document).ready(function()
 			{
 				$(e).height($(window).height()/2);
 			});
-			$('#container').isotope({ sortBy : 'symbol' });
+		}
+		
+		function reorderPlayers()
+		{
+			$('#scoreboard').isotope( 'reloadItems' );
 			
-			$('#scoreboard').isotope('reLayout')
-
+			$('#scoreboard').isotope({ sortBy : 'number' });
+			
+			$('#scoreboard').isotope( 'reLayout' );
 		}
 		
 	//INITIATE
@@ -41,7 +46,11 @@ $(document).ready(function()
 				number : function ( elem )
 				{
 					return parseInt( $(elem).find('.score').text() );
-				}
+				},
+				name : function ( elem )
+				{
+					return $(elem).find('.name').text();
+				},
 			},
 			sortBy: 'number',
 			sortAscending: false
@@ -98,9 +107,10 @@ $(document).ready(function()
 					var audio = document.getElementById('add');
 					audio.currentTime = 0;
 					audio.play();
-					break;
 					
-					//Figure out where this player should be with their points. 
+					reorderPlayers();
+					
+					break;
 				}
 				case 'subtract_point':
 				{
@@ -111,6 +121,8 @@ $(document).ready(function()
 					var audio = document.getElementById('subtract');
 					audio.currentTime = 0;
 					audio.play();
+					
+					reorderPlayers();
 					
 					break;
 				}
