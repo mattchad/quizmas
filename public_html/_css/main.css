@@ -3,9 +3,9 @@ body
 	/* font-family: "ff-tisa-web-pro"; */
 	font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background: #FFFFFF;
-	background: #006631;
 	color: #363636;
 	font-weight: 300;
+	overflow: hidden;
 }
 
 /* BUZZER */
@@ -32,13 +32,13 @@ body
 	background: red;
 }
 
-#current_players
-{
-	min-height: 400px;
-	background: green;
-}
-
 /* SCOREBOARD */
+
+#scoreboard
+{
+	overflow: hidden;
+	background: #006631;
+}
 
 #scoreboard .player
 {
