@@ -55,14 +55,24 @@ body
 {
 	position: absolute;
 	left: 0px;
-	top: 0px;
+	bottom: 45px;
 	width: 100%;
 	margin: 0px;
+	opacity: 0.4;
+	opacity: 1;
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
+}
+
+#scoreboard .player_connected .photo
+{
+	opacity: 1;
 }
 
 #scoreboard .player .photo img
 {
-	width: 80%;
+	width: 90%;
 }
 
 #scoreboard .player .board

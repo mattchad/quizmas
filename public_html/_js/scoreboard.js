@@ -76,14 +76,14 @@ $(document).ready(function()
 				case 'new_player':
 				{
 					//We've been told that a player has joined the game, add them to the current player list. 
-					$('#player_' + message.player.id).find('.connected').html('Yes');
+					$('#player_' + message.player.id).addClass('player_connected');
 					
 					break;
 				}
 				case 'player_disconnected':
 				{
 					//We've been told that a player has left the game, remove them to the current player list. 
-					$('#player_' + message.player.id).find('.connected').html('No');
+					$('#player_' + message.player.id).removeClass('player_connected');
 					break;
 				}
 				case 'player_buzzed':
