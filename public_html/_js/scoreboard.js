@@ -11,9 +11,11 @@ $(document).ready(function()
 		{
 			$('#scoreboard').height($(window).height()).width($(window).width());
 			
+			var number_of_columns = Math.ceil($('#scoreboard .player').length / 2);
+			
 			$('#scoreboard .player').each(function(i,e)
 			{
-				$(e).height(Math.floor($(window).height()/2)).width(Math.floor($(window).width()/5));
+				$(e).height(Math.floor($(window).height()/2)).width(Math.floor($(window).width()/number_of_columns));
 			});
 			
 			$('#scoreboard').isotope( 'reLayout' );

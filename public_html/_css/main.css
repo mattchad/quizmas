@@ -55,7 +55,8 @@ body
 {
 	position: absolute;
 	left: 0px;
-	bottom: 45px;
+	bottom: 130px;
+	line-height: 0;
 	width: 100%;
 	margin: 0px;
 	opacity: 0.4;
@@ -90,42 +91,43 @@ body
 	left: 0px;
 	width: 100%;
 	margin: 0px;
-	background: #999999;
-	border-top: 5px solid #363636;
-	border-bottom: 5px solid #363636;
+	background: red;
 	color: #363636;
 	font-weight: bold;
 	text-transform: uppercase;
+	height: 130px;
 }
 
-#scoreboard .buzzed .board
+#scoreboard .player .board_inner
 {
-	background: #FEDF84;
+    padding: 10px;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
 }
 
 #scoreboard .player .name
 {
-	float: left;
+	background: #999999;
 	margin: 0px;
-	padding: 10px;
-	border-left: 2px solid #363636;
+	margin-bottom: 10px;
+	padding: 0px 5px;
+	line-height: 40px;
 }
 
 #scoreboard .player .score
 {
-	border-left: 4px solid #363636;
-	border-right: 2px solid #363636;
-	float: right;
 	margin: 0px;
-	padding: 10px 0px;
-	width: 20%;
 	background: #4B31D0;
 	color: #FFFFFF;
+	line-height: 60px;
+	font-size: 50px;
+	padding: 0px 10px;
 }
 
-#scoreboard .player:last-child .score
+
+#scoreboard .buzzed .score
 {
-	border-right: 4px solid #363636;
+	background: #FEDF84;
 }
 
 /* QUIZMASTER */
