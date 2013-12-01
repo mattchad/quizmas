@@ -19,7 +19,6 @@
 <?php 		
 	}
 ?>
-    <div class="player"><span class="score" style="display: none;">-99999</span><p>+1</p></div>
 
 </div>
 <audio id="add" preload="auto">
