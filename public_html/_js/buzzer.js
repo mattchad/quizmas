@@ -16,7 +16,7 @@ $(function ()
 	//INITIATE
 	
 		//Initiate the connection variable
-		var conn
+		var conn;
 		
 		//Connect to the server
 		connectToSocket();
