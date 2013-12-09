@@ -99,7 +99,7 @@ $(document).ready(function()
 				{
 					$('#buzzer a').removeClass('locked');
 					$('.buzzed').removeClass('buzzed');
-					$('.player .time').html('');
+					$('.player .time').hide().html('');
 					break;
 				}
 				case 'add_point':
@@ -139,7 +139,7 @@ $(document).ready(function()
 						var time = $('#player_' + message.player.id).find('.time');
 						if(!$(time).html().length)
 						{
-							$(time).html(' + ' + message.time + ' s');
+							$(time).show().html(' + ' + message.time);
 						}
 					}
 				}

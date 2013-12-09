@@ -85,7 +85,7 @@ body
 
 #scoreboard .buzzed .photo img
 {
-	width: 100%;
+	width: 90%;
 }
 
 #scoreboard .player .board
@@ -99,71 +99,90 @@ body
 	font-weight: bold;
 	text-transform: uppercase;
 	height: 130px;
-	
-
 }
 
 #scoreboard .player .board_inner
 {
-    padding: 10px;
-    border: 1px solid #000000;
-    border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
-	
-		background: #b5bdc8; /* Old browsers */
-background: -moz-linear-gradient(top, #b5bdc8 0%, #828c95 36%, #28343b 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b5bdc8), color-stop(36%,#828c95), color-stop(100%,#28343b)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%); /* IE10+ */
-background: linear-gradient(to bottom, #b5bdc8 0%,#828c95 36%,#28343b 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+	padding: 0px 10px;
+}
 
+#scoreboard .player .board_top
+{
+	
+}
+
+#scoreboard .player .name_outer
+{
+	border: 4px solid #333333;
 }
 
 #scoreboard .player .name
 {
-	background: #666666; /* Old browsers */
-	background: -moz-linear-gradient(left, #666666 0%, #999999 20%, #999999 80%, #666666 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#666666), color-stop(20%,#999999), color-stop(80%,#999999), color-stop(100%,#666666)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, #666666 0%,#999999 20%,#999999 80%,#666666 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, #666666 0%,#999999 20%,#999999 80%,#666666 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left, #666666 0%,#999999 20%,#999999 80%,#666666 100%); /* IE10+ */
-	background: linear-gradient(to right, #666666 0%,#999999 20%,#999999 80%,#666666 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#666666',GradientType=1 ); /* IE6-9 */
-	
+	background: #999999;
+	color: #333333;
 	margin: 0px;
-	margin-bottom: 10px;
-	padding: 0px 5px;
-	line-height: 40px;
-	font-size: 1.5em;
-	
-	border-radius: 6px;
+	padding: 5px;
+	font-size: 20px;
+	line-height: 22px;
+	height: 20px;
+}
+
+#scoreboard .buzzed .name
+{
+	background: #fdc380;
+}
+
+#scoreboard .player .time
+{
+	border: 3px solid #333333;
+	margin: 0px;
+	border-radius: 8px;
+	background: #DDDDDD;
+	display: block;
+	color: #333333;
+	display: block;
+	widows: 40%;
+	position: absolute;
+	right: 15px;
+	top: -40px;
+	padding: 5px 10px;
+	display: none;
+}
+
+#scoreboard .player .board_middle
+{
+	padding: 0px 20px;
+}
+
+#scoreboard .player .board_middle span
+{
+	display: block;
+	height: 5px; 
+	background: #000000;
+}
+
+#scoreboard .player .board_bottom
+{
+	background: #33362F;
+	border-top: 10px solid #43271F;
+	padding: 8px 20px;
+}
+
+#scoreboard .player .score_outer
+{
+	background: #150063;
+	line-height: 58px;
+	height: 54px;
+	font-size: 40px;
+	border: 4px solid #111111;
 }
 
 #scoreboard .player .score
 {
 	margin: 0px;
-	background: #4B31D0;
 	color: #FFFFFF;
-	line-height: 60px;
-	font-size: 50px;
-	padding: 0px 10px;
-	border-radius: 6px;
-	margin: 0px 40px;
 }
 
-#scoreboard .buzzed .name
-{
-	background: #fdc380; /* Old browsers */
-	background: -moz-linear-gradient(left, #fdc380 0%, #fdfac3 20%, #fdfac3 80%, #fdc380 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#fdc380), color-stop(20%,#fdfac3), color-stop(80%,#fdfac3), color-stop(100%,#fdc380)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, #fdc380 0%,#fdfac3 20%,#fdfac3 80%,#fdc380 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, #fdc380 0%,#fdfac3 20%,#fdfac3 80%,#fdc380 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left, #fdc380 0%,#fdfac3 20%,#fdfac3 80%,#fdc380 100%); /* IE10+ */
-	background: linear-gradient(to right, #fdc380 0%,#fdfac3 20%,#fdfac3 80%,#fdc380 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdc380', endColorstr='#fdc380',GradientType=1 ); /* IE6-9 */
-}
 
 /* QUIZMASTER */
 

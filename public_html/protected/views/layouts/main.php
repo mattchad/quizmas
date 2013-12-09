@@ -15,6 +15,10 @@
 	<?php Yii::app()->clientScript->registerScriptFile('/_js/jquery.fancybox.pack.js'); ?>
 	<?php Yii::app()->clientScript->registerScriptFile('/_js/jquery.isotope.min.js'); ?>
 	<?php Yii::app()->clientScript->registerScriptFile('/_js/webfonts.js'); ?>
+	
+	<script type="text/javascript" src="//use.typekit.net/cyo7vgl.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
 	<title>Quizmas!</title>
 </head>
 
