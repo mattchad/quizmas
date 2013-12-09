@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="//use.typekit.net/cyo7vgl.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-	<title>Quizmas!</title>
+	<title><?php echo strlen($this->pageTitle) ? $this->pageTitle : 'Quizmas!'; ?></title>
 </head>
 
 <body>

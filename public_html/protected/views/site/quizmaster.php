@@ -1,5 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/_images/iphone-quizmaster.png"/>  
 
 <ul id="quizmaster" class="nav">
 	<li class="spacer_bottom"><a href="#" id="unlock_buzzers">Buzzers Active</a></li>

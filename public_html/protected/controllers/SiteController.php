@@ -45,6 +45,7 @@ class SiteController extends Controller
 	
 	public function actionBuzzer()
 	{
+		$this->pageTitle = 'Buzzer';
 		Yii::app()->clientScript->registerScriptFile('/_js/buzzer.js');
 		$this->render('buzzer');
 	}
@@ -60,6 +61,7 @@ class SiteController extends Controller
 	
 	public function actionQuizmaster()
 	{
+		$this->pageTitle = 'Quizmaster';
 		Yii::app()->clientScript->registerScriptFile('/_js/quizmaster.js');
 		
 		$Players = User::model()->findAll(array('order'=>'last_name ASC'));

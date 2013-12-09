@@ -19,7 +19,7 @@ require_once( dirname(__FILE__) . '/../components/helpers.php');
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'CLPE',
+	'name'=>'Quizmas!',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
