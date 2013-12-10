@@ -40,7 +40,9 @@ class SiteController extends Controller
 		
 	public function actionIndex()
 	{
-		$this->render('index');
+        $this->redirect(array('site/buzzer'));
+
+		//$this->render('index');
 	}
 	
 	public function actionBuzzer()
