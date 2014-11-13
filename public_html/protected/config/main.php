@@ -5,9 +5,8 @@ $db = array(
 	'username' => 'root',
 	'password' => '',
 	'charset' => 'utf8',
+	'enableProfiling'=>true, 
 );
-
-require_once( dirname(__FILE__) . '/../components/helpers.php');
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
@@ -20,20 +19,10 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-		'application.lib.*',
 	),
 
 	'modules'=>array(
 		'admin',
-		// uncomment the following to enable the Gii tool
-		
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'password',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-		),
-		
 	),
 
 	// application components
@@ -44,9 +33,6 @@ return array(
 			'class'=>'WebUser',
 		),
 
-		'functions'=>array(
-			'class'=>'application.extensions.Functions'
-		),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
@@ -58,18 +44,8 @@ return array(
 				'/scoreboard'	=> 'site/scoreboard',
 				'/buzzer'	=> 'site/buzzer',
 				'/quizmasterz'	=> 'site/quizmaster',
-
-				/* '<category:\w+>/<slug:[a-z\-]+>-<id:\d+>' => 'blog/view', */
-				/* '<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',*/
 			),
 		),
-		
-		/* 'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),*/
-		// uncomment the following to use a MySQL database
 		
 		'db'=>$db,
 		
