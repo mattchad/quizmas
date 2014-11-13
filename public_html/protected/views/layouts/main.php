@@ -43,7 +43,6 @@
 </head>
 
 <body>
-    <?php echo Yii::getVersion();?>
 	<?php echo $content; ?>
 </body>
 </html>
