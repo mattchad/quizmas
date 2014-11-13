@@ -15,19 +15,18 @@ class UserIdentity extends CUserIdentity
 		
 		if ($User===null) // No user found!
 		{
-			$this->errorCode=self::ERROR_USERNAME_INVALID; // ERROR_USERNAME_INVALID = 1
+			$this->errorCode = self::ERROR_USERNAME_INVALID; // ERROR_USERNAME_INVALID = 1
 		}
 		else if ($User->password !== SHA1($this->password) ) // Invalid password!
 		{
 			//$this->errorCode=self::ERROR_PASSWORD_INVALID; // ERROR_PASSWORD_INVALID = 2
-			$this->errorCode=self::ERROR_USERNAME_INVALID; // ERROR_USERNAME_INVALID = 1
+			$this->errorCode = self::ERROR_USERNAME_INVALID; // ERROR_USERNAME_INVALID = 1
 		}
 		else // Okay!
 		{ 
-			$this->errorCode=self::ERROR_NONE; // ERROR_NONE = 0
+			$this->errorCode = self::ERROR_NONE; // ERROR_NONE = 0
 			
 			$this->id = $User->id;
-			$this->setState('roles', $User->role);    
 		}
 		
 		return $this->errorCode;

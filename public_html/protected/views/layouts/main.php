@@ -39,7 +39,7 @@
         Yii::app()->clientScript->registerScript('typekit',"try{Typekit.load();}catch(e){}");
 	?>
 	
-	<title><?php echo strlen($this->pageTitle) ? $this->pageTitle : 'Quizmas!'; ?></title>
+	<title><?php echo strlen($this->pageTitle) ? $this->pageTitle . ' | Quizmas' : 'Quizmas!'; ?></title>
 </head>
 
 <body>

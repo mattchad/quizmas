@@ -13,8 +13,12 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index', 'buzzer', 'scoreboard', 'quizmaster'),
+				'actions'=>array('login', 'error', 'logout', 'reset'),
 				'users'=>array('*'),
+			),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -22,54 +26,10 @@ class SiteController extends Controller
 		);
 	}
 	
-	public function actions()
-	{
-		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
-			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
-				'class'=>'CViewAction',
-			),
-		);
-	}
-		
 	public function actionIndex()
 	{
         //$this->redirect(array('site/buzzer'));
-        
-        $this->layout = 'admin';
 		$this->render('index');
-	}
-	
-	public function actionBuzzer()
-	{
-		$this->pageTitle = 'Buzzer';
-		Yii::app()->clientScript->registerScriptFile('/_js/buzzer.js');
-		$this->render('buzzer');
-	}
-	
-	public function actionScoreboard()
-	{
-		Yii::app()->clientScript->registerScriptFile('/_js/scoreboard.js');
-		
-		$Players = User::model()->findAll(array('order'=>'last_name ASC'));
-		
-		$this->render('scoreboard', array('Players'=>$Players));
-	}
-	
-	public function actionQuizmaster()
-	{
-		$this->pageTitle = 'Quizmaster';
-		Yii::app()->clientScript->registerScriptFile('/_js/quizmaster.js');
-		
-		$Players = User::model()->findAll(array('order'=>'last_name ASC'));
-		
-		$this->render('quizmaster', array('Players'=>$Players));
 	}
 	
 	public function actionError()
@@ -85,46 +45,47 @@ class SiteController extends Controller
 
 	public function actionLogin()
 	{
-	    $this->pageTitle = 'Login | ' . $this->pageTitle;
+	    $this->pageTitle = 'Login';
+	    
 		if(!Yii::app()->user->isGuest)
 		{
+			//This visitor is already logged in. 
 			$this->redirect(array("site/index"));
 		}
 		else
 		{
-			$model=new LoginForm;
-	
-			// if it is ajax validation request
-			if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-			{
-				echo CActiveForm::validate($model);
-				Yii::app()->end();
-			}
+    		//Before we login, let's make sure everyone has a password;
+    		foreach(User::model()->findAll() as $User)
+    		{
+        		if(!strlen($User->password))
+        		{
+            		$User->password = Hash::create_hash('password');
+            		$User->save(false);
+        		}
+    		}
+    		
+			$LoginForm = new LoginForm;
 	
 			// collect user input data
 			if(isset($_POST['LoginForm']))
 			{
-				$model->attributes=$_POST['LoginForm'];
-				// validate user input and redirect to the previous page if valid
+				$LoginForm->attributes = $_POST['LoginForm'];
 				
-				//if($model->validate() && $model->login())
-				
-				if($model->validate()) // We're doing the logging in here too
+				if($LoginForm->validate()) // We're doing the logging in here too
 				{
-					/* 
-						Validate() validates that the email address and password format are correct, in turn firing authenticate() in the model
-					*/
+					// Validate() validates that the email address and password format are correct, in turn firing authenticate() in the model
 					$this->redirect(Yii::app()->user->returnUrl);
 				}
 			}
 			// display the login form
-			$this->render('login',array('model'=>$model));
+			$this->render('login',array('LoginForm'=>$LoginForm));
 		}
 	}
 	
 	public function actionReset()
 	{
-	    $this->pageTitle = 'Reset Password | ' . $this->pageTitle;
+	    $this->pageTitle = 'Reset Password';
+	    
 		$model=new ResetForm;
 		
 		$reset_sent = false;

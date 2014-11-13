@@ -7,26 +7,25 @@
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
-)); ?>
-
+));?>
 	<div class="input_group">
-		<?php echo $form->labelEx($model,'email_address'); ?>
+		<?php echo $form->labelEx($LoginForm,'email_address'); ?>
 		<div class="input_outer">
-			<?php echo $form->textField($model,'email_address'); ?>
-			<?php echo $form->error($model,'email_address', array('class'=>'text_error')); ?>
+			<?php echo $form->textField($LoginForm,'email_address'); ?>
+			<?php echo $form->error($LoginForm,'email_address', array('class'=>'text_error')); ?>
 		</div>
 	</div>
 	<div class="input_group">
-		<?php echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->labelEx($LoginForm,'password'); ?>
 		<div class="input_outer">
-			<?php echo $form->passwordField($model,'password'); ?>
-			<?php echo $form->error($model,'password', array('class'=>'text_error')); ?>
+			<?php echo $form->passwordField($LoginForm,'password'); ?>
+			<?php echo $form->error($LoginForm,'password', array('class'=>'text_error')); ?>
 		</div>
 	</div>
 	<div class="input_group">
 		<div class="input_outer">
 			<label for="LoginForm_rememberMe">
-				<?php echo $form->checkBox($model,'rememberMe', array('class'=>'checkbox')); ?> Remember me for 30 days
+				<?php echo $form->checkBox($LoginForm,'rememberMe', array('class'=>'checkbox')); ?> Remember me for 30 days
 			</label>
 		</div>
 	</div>

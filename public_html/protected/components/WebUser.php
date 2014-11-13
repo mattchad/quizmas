@@ -1,33 +1,57 @@
 <?php 
 class WebUser extends CWebUser
 {
-	public function checkAccess($operation, $params=array())
+	// Store model to not repeat query.
+	private $model = null;
+
+	public function __get($name)
 	{
-		if (empty($this->id))
+		try
 		{
-			// Not identified => no rights
-			return false;
+			return parent::__get($name);
+		} 
+		catch (CException $e)
+		{
+			$m = $this->getModel();
+			if($m !== NULL && $m->hasAttribute($name))
+				return $m->{$name};
+			else throw $e;
 		}
-		
-		$role = $this->getState("roles");
-		//die($operation . " " . $role);
-		
-		if($operation == "admin" && $role >= User::ROLE_ADMIN)
+	}
+ 
+	public function __set($name, $value)
+	{
+		try
 		{
-			return true;
+			return parent::__set($name, $value);
+		} 
+		catch (CException $e)
+		{
+			$m = $this->getModel();
+			$m->{$name} = $value;
 		}
-		else
+	}
+ 
+	public function __call($name, $parameters)
+	{
+		try
 		{
-			return false;
+			return parent::__call($name, $parameters);	
 		}
-		
-		/* if ($role === 'admin')
+		catch (CException $e)
 		{
-			return true; // admin role has access to everything
-		} */
+			$m = $this->getModel();
+			return call_user_func_array(array($m,$name), $parameters);
+		}
+	}
+
+	public function getModel()
+	{
+		if(!isset($this->id)) $this->model = new User;
 		
-		// allow access if the operation request is the current user's role
-		//return ($operation === $role);
+		if($this->model === null)
+			$this->model = User::model()->findByPk($this->id);
+		return $this->model;
 	}
 }
 ?>

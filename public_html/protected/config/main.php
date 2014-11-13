@@ -40,10 +40,13 @@ return array(
 			'useStrictParsing'=>true,
 			'showScriptName'=>false,
 			'rules'=>array(
-				''	=> 'site/index',
-				'/scoreboard'	=> 'site/scoreboard',
-				'/buzzer'	=> 'site/buzzer',
-				'/quizmasterz'	=> 'site/quizmaster',
+				'/'	=> 'site/index',
+				'/login'	=> 'site/login',
+				'/logout'	=> 'site/logout',
+				
+				'/scoreboard'	=> 'quiz/scoreboard',
+				'/buzzer'	=> 'quiz/buzzer',
+				'/quizmasterz'	=> 'quiz/quizmaster',
 			),
 		),
 		
