@@ -40,9 +40,10 @@ class SiteController extends Controller
 		
 	public function actionIndex()
 	{
-        $this->redirect(array('site/buzzer'));
-
-		//$this->render('index');
+        //$this->redirect(array('site/buzzer'));
+        
+        $this->layout = 'admin';
+		$this->render('index');
 	}
 	
 	public function actionBuzzer()

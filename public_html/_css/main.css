@@ -8,6 +8,7 @@ body
 	overflow: hidden;
 }
 
+
 /* BUZZER */
 
 .screen
@@ -194,14 +195,14 @@ body
 
 /* NAV */
 
-.nav
+.nav_list
 {
 	list-style-type: none;
 	padding: 5px;
 	margin: 0px;
 }
 
-.nav li
+.nav_list li
 {
 	line-height: 60px;
 	font-size: 30px;
@@ -215,28 +216,28 @@ body
 	position: relative;
 }
 
-.nav li:nth-child(5n+2)
+.nav_list li:nth-child(5n+2)
 {
 	background: #EC0972;
 }
 
-.nav li:nth-child(5n+3)
+.nav_list li:nth-child(5n+3)
 {
 	background: #8B55BF;
 }
 
-.nav li:nth-child(5n+4)
+.nav_list li:nth-child(5n+4)
 {
 	background: #5EBCE5;
 }
 
-.nav li:nth-child(5n+5)
+.nav_list li:nth-child(5n+5)
 {
 	background: #FF6800;
 }
 
-.nav li a,
-.nav li span
+.nav_list li a,
+.nav_list li span
 {
 	display: block;
 	padding: 0px;
@@ -244,8 +245,8 @@ body
 	text-decoration: none;
 }
 
-.nav li .add,
-.nav li .subtract
+.nav_list li .add,
+.nav_list li .subtract
 {
 	position: absolute;
 	left: 10px;
@@ -255,13 +256,13 @@ body
 	line-height: 50px;
 }
 
-.nav li .subtract
+.nav_list li .subtract
 {
 	left: auto;
 	right: 10px;
 }
 
-.nav .spacer_bottom
+.nav_list .spacer_bottom
 {
 	margin-bottom: 30px;
 }

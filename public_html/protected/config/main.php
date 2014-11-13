@@ -7,15 +7,7 @@ $db = array(
 	'charset' => 'utf8',
 );
 
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-
-// This is the main Web application configuration. Any writable
-// CWebApplication properties can be configured here.
 require_once( dirname(__FILE__) . '/../components/helpers.php');
-//require_once( dirname(__FILE__) . '/../components/Netcarver/Textile/Parser.php');
-//require_once( dirname(__FILE__) . '/../components/Netcarver/Textile/Databag.php');
-//require_once( dirname(__FILE__) . '/../components/Netcarver/Textile/Tag.php');
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
