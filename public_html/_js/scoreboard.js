@@ -168,17 +168,6 @@ $(document).ready(function()
 		$(window).resize(function()
 		{
 			resizePlayers();
-		});
-	
-	//JQUERY EVENTS
-	
-	$(document).on('click', 'div', function()
-	{
-		/* var player_1 = $('#scoreboard .player:eq(2)').clone();;
-			$('#scoreboard').masonry('remove', $('#scoreboard .player:eq(2)'));
-		
-		$('#scoreboard').prepend($(player_1));
-		$('#scoreboard').masonry('prepended', $(player_1));*/
-	});
+		});	
 });
 	

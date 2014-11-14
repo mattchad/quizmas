@@ -6,14 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 	<?php
-    	//Normalise CSS
-    	//Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/_css/normalise.css');
-
     	//Bootstrap CSS
     	Yii::app()->clientScript->registerCssFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
-    	
-    	//Fancybox CSS
-    	Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/_css/jquery.fancybox.css');
     	
         //Define the server address, so the JS knows where to find the websocket server
     	Yii::app()->clientScript->registerScript('server_ip_address',"var server_ip_address = '" . $_SERVER['SERVER_ADDR'] . "'", CClientScript::POS_HEAD);
@@ -23,9 +17,6 @@
     	
     	// Bootstrap
         Yii::app()->clientScript->registerScriptFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js', CClientScript::POS_END);
-        
-        // Fancybox
-        Yii::app()->clientScript->registerScriptFile('/_js/jquery.fancybox.pack.js', CClientScript::POS_END);
         
         // Isotope
         Yii::app()->clientScript->registerScriptFile('/_js/jquery.isotope.min.js', CClientScript::POS_END);

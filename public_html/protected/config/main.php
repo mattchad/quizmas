@@ -22,10 +22,6 @@ return array(
 		'ext.Email.Email',
 	),
 
-	'modules'=>array(
-		'admin',
-	),
-
 	// application components
 	'components'=>array(
 		'user'=>array(
@@ -92,7 +88,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'help@pageplay.com',
+		'adminEmail'=>'matt@pageplay.com',
 		'email_delivery_method' => 'postmark',
         'email_from_name' => 'Quizmas',
         'email_from_address' => 'matt@pageplay.com',
