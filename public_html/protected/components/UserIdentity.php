@@ -11,13 +11,13 @@ class UserIdentity extends CUserIdentity
 	
 	public function authenticate()
 	{
-		$User = User::model()->findByAttributes(array('email_address'=>$this->username, 'verified'=>'1'));
+		$User = User::model()->findByAttributes(array('email_address'=>$this->username));
 		
 		if ($User===null) // No user found!
 		{
 			$this->errorCode = self::ERROR_USERNAME_INVALID; // ERROR_USERNAME_INVALID = 1
 		}
-		else if ($User->password !== SHA1($this->password) ) // Invalid password!
+		else if(!Hash::validate_password($this->password, $User->password)) // Invalid password!
 		{
 			//$this->errorCode=self::ERROR_PASSWORD_INVALID; // ERROR_PASSWORD_INVALID = 2
 			$this->errorCode = self::ERROR_USERNAME_INVALID; // ERROR_USERNAME_INVALID = 1
