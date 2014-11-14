@@ -2,9 +2,6 @@
 
 class User extends CActiveRecord
 {	
-	const ROLE_USER = 10;
-	const ROLE_ADMIN = 30;
-	
 	public $password_repeat;
 	
 	public static function model($className=__CLASS__)
@@ -29,12 +26,11 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('first_name, last_name', 'length', 'min'=>3, 'max'=>50),
-			array('password', 'length', 'max'=>20, 'except'=>'edit_user'),
-			array('password','ext.SPasswordValidator', 'up' => 0, 'low' => 1, 'digit'=>1, 'spec'=>0, 'min' => 6, 'max' => 21, 'except'=>'edit_user'),
-			array('password', 'compare', 'except'=>'edit_user'),
+			array('password', 'length', 'max'=>20),
+			array('password', 'compare'),
 			
 			array('first_name, last_name, email_address', 'required'),
-			array('password', 'required', 'except'=>'edit_user'),
+			array('password', 'required'),
 			
 			array('email_address', 'email'),
 			array('email_address', 'unique', 'message'=>'The email address {value} is already registered'),

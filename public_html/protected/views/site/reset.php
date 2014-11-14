@@ -15,6 +15,7 @@
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-10">
             <?php echo CHtml::submitButton("Reset Password", array('class' => 'btn btn-primary')); ?>
+            <?php echo CHtml::link("Cancel", array('site/index'), array('class'=>'btn btn-link')); ?>
         </div>
     </div>
 	<?php $this->endWidget(); ?>

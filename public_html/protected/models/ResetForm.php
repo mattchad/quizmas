@@ -26,10 +26,11 @@ class ResetForm extends CFormModel
 		//We found a user with that email address, let's make a new hash and email them. 
 		if($User !== null)
 		{
+            // IMPROVEMENT - Check that this hash isn't already in use.
     		$User->hash = Hash::random_key();
     		$User->save(false, array('hash'));
     		
-    		$resetUrl = Yii::app()->request->getBaseUrl(true) . "/password-reset/" . $User->hash;
+    		$resetUrl = Yii::app()->request->getBaseUrl(true) . "/reset-password/" . $User->hash;
     		
     		$email_body = "Hello,
 

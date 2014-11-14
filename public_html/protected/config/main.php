@@ -45,6 +45,7 @@ return array(
 				'/login'	=> 'site/login',
 				'/logout'	=> 'site/logout',
 				'/reset-password'	=> 'site/reset',
+				'/reset-password/<hash:\w+>'	=> 'user/reset',
 				
 				'/scoreboard'	=> 'quiz/scoreboard',
 				'/buzzer'	=> 'quiz/buzzer',
