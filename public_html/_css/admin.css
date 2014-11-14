@@ -2,3 +2,13 @@ body
 {
 	padding-top: 70px;
 }
+
+.panel-default > .panel-heading
+{
+    border: 0px;
+}
+
+.panel-default
+{
+    cursor: move;
+}

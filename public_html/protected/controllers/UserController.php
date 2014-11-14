@@ -16,10 +16,91 @@ class UserController extends Controller
 				'actions'=>array('reset'),
 				'users'=>array('*'),
 			),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index', 'question', 'delete', 'order'),
+				'users'=>array('@'),
+			),
 			array('deny',
 				'users'=>array('*'),
 			),
 		);
+	}
+	
+	public function actionIndex()
+	{
+    	Yii::app()->clientScript->registerCoreScript('jquery.ui', CClientScript::POS_END);
+    	$this->render('index', array('User'=>Yii::app()->user));
+	}
+	
+	public function actionOrder()
+	{
+    	foreach($_POST['orderData'] as $key => $question_id)
+    	{
+        	$Question = Question::model()->findByAttributes(array('id'=>$question_id, 'user_id'=>Yii::app()->user->id));
+        	
+        	if(!is_null($Question))
+        	{
+            	$Question->list_order = (int)$key;
+            	$Question->save(false);
+        	}
+    	}
+	}
+	
+	public function actionQuestion($id = null)
+	{
+    	if(is_null($id))
+    	{
+        	$Question = new Question;
+        	$Question->user_id = Yii::app()->user->id;
+    	}
+    	else
+    	{
+            $Question = Question::model()->findByAttributes(array('id'=>$id, 'user_id'=>Yii::app()->user->id));
+    	}
+    	
+    	if(is_null($Question))
+    	{
+        	throw new CHttpException(404,'The requested page does not exist.');
+    	}
+    	
+    	if(isset($_POST['Question']))
+    	{
+        	$Question->attributes = $_POST['Question'];
+        	        	
+        	if($Question->validate(array('text', 'value', 'user_id')))
+        	{            	
+            	//Let the user know. 
+            	Yii::app()->user->setFlash('success' ,'That question has been ' . ($Question->isNewRecord ? 'created' : 'updated'));
+            	
+            	//Save the question
+                $Question->save(false);
+            	
+            	//Go back to the question list
+            	$this->redirect(array('user/index'));
+        	}
+    	}
+    	
+    	$this->render('question', array('Question'=>$Question));
+	}
+	
+	public function actionDelete($id)
+	{
+    	$Question = Question::model()->findByAttributes(array('id'=>$id, 'user_id'=>Yii::app()->user->id));
+    	
+    	if(is_null($Question))
+    	{
+        	throw new CHttpException(404,'The requested page does not exist.');
+    	}
+    	
+    	//Delete the question
+    	$Question->delete();
+    	
+    	//Set a message to the user confirming the question was deleted
+    	Yii::app()->user->setFlash('success' ,'That question has been deleted.');
+		
+		//Redirect the user back to the home page. 
+		$this->redirect(array('user/index'));
+    	
 	}
 	
 	public function actionReset($hash)

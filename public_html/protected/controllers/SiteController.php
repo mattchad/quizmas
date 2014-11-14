@@ -16,20 +16,10 @@ class SiteController extends Controller
 				'actions'=>array('login', 'error', 'logout', 'reset'),
 				'users'=>array('*'),
 			),
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index'),
-				'users'=>array('@'),
-			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
-	}
-	
-	public function actionIndex()
-	{
-        //$this->redirect(array('site/buzzer'));
-		$this->render('index');
 	}
 	
 	public function actionError()

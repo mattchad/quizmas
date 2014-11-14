@@ -37,12 +37,17 @@ return array(
 			'useStrictParsing'=>true,
 			'showScriptName'=>false,
 			'rules'=>array(
-				'/'	=> 'site/index',
+				'/'	=> 'user/index',
 				'/login'	=> 'site/login',
 				'/logout'	=> 'site/logout',
 				'/reset-password'	=> 'site/reset',
 				'/reset-password/<hash:\w+>'	=> 'user/reset',
-				
+
+				'/order'	=> 'user/order',
+				'/question/<id:\d+>'	=> 'user/question',
+				'/question/create'	=> 'user/question',
+				'/question/<id:\d+>/delete'	=> 'user/delete',
+
 				'/scoreboard'	=> 'quiz/scoreboard',
 				'/buzzer'	=> 'quiz/buzzer',
 				'/quizmasterz'	=> 'quiz/quizmaster',

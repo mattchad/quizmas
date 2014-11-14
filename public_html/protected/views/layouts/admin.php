@@ -1,5 +1,6 @@
 <?php $this->beginContent('//layouts/main'); ?>
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/_css/admin.css'); ?>
+<?php Yii::app()->clientScript->registerScriptFile('/_js/admin.js', CClientScript::POS_END); ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
