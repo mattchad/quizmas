@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>Hello <?php echo $User->first_name; ?> <?php echo CHtml::link('Add Question', array('user/question'), array('class'=>'btn btn-primary btn-lg pull-right')); ?></h1>
+    <h1>Your Questions <?php echo CHtml::link('Add Question', array('user/question'), array('class'=>'btn btn-primary btn-lg pull-right')); ?></h1>
 </div>
 <?php 
     $this->widget('zii.widgets.CListView', array(
