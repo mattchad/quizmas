@@ -15,9 +15,6 @@
     	//Fancybox CSS
     	Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/_css/jquery.fancybox.css');
     	
-    	//Main CSS
-    	Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/_css/main.css');
-    	
         //Define the server address, so the JS knows where to find the websocket server
     	Yii::app()->clientScript->registerScript('server_ip_address',"var server_ip_address = '" . $_SERVER['SERVER_ADDR'] . "'", CClientScript::POS_HEAD);
     	

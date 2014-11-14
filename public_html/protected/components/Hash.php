@@ -56,6 +56,11 @@
                 ));
         }
         
+        public static function random_key()
+        {
+            return sha1(mcrypt_create_iv(Hash::PBKDF2_SALT_BYTE_SIZE, MCRYPT_DEV_URANDOM));
+        }
+        
         public static function validate_password($password, $correct_hash)
         {
             $params = explode(":", $correct_hash);

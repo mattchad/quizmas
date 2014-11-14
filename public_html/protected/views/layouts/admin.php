@@ -22,6 +22,14 @@
 </nav>
 
 <div class="container">
+    <?php
+        foreach(Yii::app()->user->getFlashes() as $key => $message)
+        {
+            ?>
+            <div class="alert alert-<?php echo $key; ?>" role="alert"><?php echo $message; ?></div>
+            <?php
+        }
+    ?>
     <?php echo $content; ?>
 </div>
 

@@ -55,7 +55,7 @@ class SiteController extends Controller
 		else
 		{
     		//Before we login, let's make sure everyone has a password;
-    		foreach(User::model()->findAll() as $User)
+    		foreach(User::model()->findAll(array('condition'=>"password = ''")) as $User)
     		{
         		if(!strlen($User->password))
         		{
@@ -86,22 +86,23 @@ class SiteController extends Controller
 	{
 	    $this->pageTitle = 'Reset Password';
 	    
-		$model=new ResetForm;
-		
-		$reset_sent = false;
+		$ResetForm = new ResetForm;
 		
 		if(isset($_POST['ResetForm']))
 		{
-			$model->attributes=$_POST['ResetForm'];
+			$ResetForm->attributes = $_POST['ResetForm'];
 			
-			if($model->validate())
+			if($ResetForm->validate())
 			{
-				$model->sendPasswordReset();
-				$reset_sent = true;
+				$ResetForm->sendPasswordReset();
+				
+				Yii::app()->user->setFlash('success' ,'An email has been sent to your email address with a password reset link. ');
+				
+				$this->redirect(array('site/login'));
 			}
 		}
 		
-		$this->render('reset', array('model'=>$model, 'reset_sent' => $reset_sent));
+		$this->render('reset', array('ResetForm'=>$ResetForm));
 	}
 
 	/**

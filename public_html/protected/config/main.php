@@ -19,6 +19,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'ext.Email.Email',
 	),
 
 	'modules'=>array(
@@ -43,6 +44,7 @@ return array(
 				'/'	=> 'site/index',
 				'/login'	=> 'site/login',
 				'/logout'	=> 'site/logout',
+				'/reset-password'	=> 'site/reset',
 				
 				'/scoreboard'	=> 'quiz/scoreboard',
 				'/buzzer'	=> 'quiz/buzzer',
@@ -90,5 +92,9 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'help@pageplay.com',
+		'email_delivery_method' => 'postmark',
+        'email_from_name' => 'Quizmas',
+        'email_from_address' => 'matt@pageplay.com',
+        'email_postmark_api_key'=>'30c2feb3-fd2d-42c7-90be-497d0b65a595',
 	),
 );
