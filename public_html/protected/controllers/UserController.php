@@ -55,7 +55,8 @@ class UserController extends Controller
     	}
     	else
     	{
-            $Question = Question::model()->findByAttributes(array('id'=>$id, 'user_id'=>Yii::app()->user->id));
+            //$Question = Question::model()->findByAttributes(array('id'=>$id, 'user_id'=>Yii::app()->user->id));
+            $Question = null;
     	}
     	
     	if(is_null($Question))
@@ -67,7 +68,7 @@ class UserController extends Controller
     	{
         	$Question->attributes = $_POST['Question'];
         	        	
-        	if($Question->validate(array('text', 'value', 'user_id')))
+        	if($Question->validate(array('text', 'value', 'user_id', 'password')))
         	{            	
             	//Let the user know. 
             	Yii::app()->user->setFlash('success' ,'That question has been ' . ($Question->isNewRecord ? 'created' : 'updated'));

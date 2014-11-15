@@ -18,6 +18,13 @@
         <?php echo !is_null($Question->getError('value')) ? '<span class="help-block">' . $form->error($Question,'value') .'</span>' : ''; ?>
     </div>
 </div>
+<div class="form-group <?php echo !is_null($Question->getError('password')) ? 'has-error' : ''; ?>">
+    <?php echo $form->labelEx($Question,'password', array('class'=>'col-sm-3 col-md-2 control-label')); ?>
+    <div class="col-sm-4">
+        <?php echo $form->passwordField($Question,'password', array('class'=>'form-control')); ?>
+        <?php echo !is_null($Question->getError('password')) ? '<span class="help-block">' . $form->error($Question,'password') .'</span>' : ''; ?>
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-offset-3 col-md-offset-2 col-sm-10">
         <?php echo CHtml::submitButton($Question->isNewRecord ? 'Create' : 'Update', array('class' => 'btn btn-primary')); ?>
