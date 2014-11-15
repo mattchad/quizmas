@@ -28,6 +28,7 @@
 <div class="form-group">
     <div class="col-sm-offset-3 col-md-offset-2 col-sm-10">
         <?php echo CHtml::submitButton($Question->isNewRecord ? 'Create' : 'Update', array('class' => 'btn btn-primary')); ?>
+        <?php echo CHtml::link('Cancel', array('user/index'), array('class' => 'btn btn-link')); ?>
     </div>
 </div>
 <?php $this->endWidget(); ?>
