@@ -40,6 +40,8 @@
         const HASH_ITERATION_INDEX = 1;
         const HASH_SALT_INDEX = 2;
         const HASH_PBKDF2_INDEX = 3;
+        const HASH_SIZE_INDEX = 3;
+        const HASH_CIPHER_INDEX = 4;
         
         public static function create_hash($password)
         {
@@ -142,6 +144,93 @@
                 return substr($output, 0, $key_length);
             else
                 return bin2hex(substr($output, 0, $key_length));
+        }
+        
+        public static function encrypt($text, $password)
+        {
+            // format: algorithm:iterations:salt:hash_size:ciphertext
+            
+        	# Prepend 4-chars data hash to the data itself for validation after decryption
+            $text = substr(md5($text), 0, 4) . $text;
+            
+            //Calculate a random salt to use for the key
+            $salt = base64_encode(mcrypt_create_iv(Hash::PBKDF2_SALT_BYTE_SIZE, MCRYPT_DEV_URANDOM));
+            
+            //Create a key based on default values above, our random salt and the given password.
+            $key = base64_encode(Hash::pbkdf2(
+                    Hash::PBKDF2_HASH_ALGORITHM,
+                    $password,
+                    $salt,
+                    Hash::PBKDF2_ITERATIONS,
+                    Hash::PBKDF2_HASH_BYTE_SIZE,
+                    true
+                ));
+                            
+            # create a random IV to use with CBC encoding
+            $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+            $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+            
+            # creates a cipher text compatible with AES (Rijndael block size = 128)
+            # to keep the text confidential 
+            # only suitable for encoded input that never ends with value 00h
+            # (because of default zero padding)
+            $ciphertext = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $text, MCRYPT_MODE_CBC, $iv);
+        
+            # prepend the IV for it to be available for decryption
+            $ciphertext = $iv . $ciphertext;
+        
+            # encode the resulting cipher text so it can be represented by a string
+            $ciphertext_base64 = base64_encode($ciphertext);
+        
+            return Hash::PBKDF2_HASH_ALGORITHM . ":" . Hash::PBKDF2_ITERATIONS . ":" .  $salt . ':' . Hash::PBKDF2_HASH_BYTE_SIZE . ':' . $ciphertext_base64;
+        }
+        
+        public static function decrypt($correct_hash, $password)
+        {
+            $params = explode(":", $correct_hash);
+            
+            if(count($params) < Hash::HASH_SECTIONS)
+               return false;
+               
+            $key = base64_encode(Hash::pbkdf2(
+                    $params[Hash::HASH_ALGORITHM_INDEX],
+                    $password,
+                    $params[Hash::HASH_SALT_INDEX],
+                    (int)$params[Hash::HASH_ITERATION_INDEX],
+                    (int)$params[Hash::HASH_SIZE_INDEX],
+                    true
+                ));
+                
+            $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+            
+            $ciphertext_base64 = $params[Hash::HASH_CIPHER_INDEX];
+            
+            $ciphertext_dec = base64_decode($ciphertext_base64);
+    
+            # retrieves the IV, iv_size should be created using mcrypt_get_iv_size()
+            $iv_dec = substr($ciphertext_dec, 0, $iv_size);
+            
+            # retrieves the cipher text (everything except the $iv_size in the front)
+            $ciphertext_dec = substr($ciphertext_dec, $iv_size);
+        
+            # may remove 00h valued characters from end of plain text
+            $plaintext_dec = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $ciphertext_dec, MCRYPT_MODE_CBC, $iv_dec), "\0");
+            
+            //Retrieve our 4 validation characters
+            $validation_hash = substr($plaintext_dec, 0, 4);
+            
+            //Retrieve our original text, without the validation chars
+            $original_text = substr($plaintext_dec, 4);
+            
+            //Calculate what the 4 validation characters should have been, based on our original text
+            if (substr(md5($original_text), 0, 4) == $validation_hash)
+            {
+                //They match? Return the text then.
+                return $original_text;
+            }
+            
+            //Encryption failed. Return null to notify the code.
+            return null;
         }
 	}
 ?>

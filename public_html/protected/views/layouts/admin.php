@@ -1,25 +1,38 @@
 <?php $this->beginContent('//layouts/main'); ?>
-<?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/_css/admin.css'); ?>
-<?php Yii::app()->clientScript->registerScriptFile('/_js/admin.js', CClientScript::POS_END); ?>
+<?php 
+    //Bootstrap CSS 
+    Yii::app()->clientScript->registerCssFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
+    
+    //Admin CSS
+    Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/_css/admin.css');
+    
+    //Admin JS
+    Yii::app()->clientScript->registerScriptFile('/_js/admin.js', CClientScript::POS_END);
+?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Project name</a>
+    <div class="container">
+        <div class="navbar-header">
+          <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> -->
+          <a class="navbar-brand" href="/"><?php echo Yii::app()->name; ?></a>
+        </div>
+        <!-- <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+        <div id="navbar" class="collapse navbar-collapse pull-right">
+            <ul class="nav navbar-nav">
+                <li><?php echo CHtml::link('Logout', array('site/logout')); ?></li>
+            </ul>
+        </div>
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
 </nav>
 
 <div class="container">
