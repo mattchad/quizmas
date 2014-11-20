@@ -1,5 +1,8 @@
 <?php $this->beginContent('//layouts/main'); ?>
 <?php 
+	// Bootstrap
+    Yii::app()->clientScript->registerScriptFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js');
+
     //Bootstrap CSS 
     Yii::app()->clientScript->registerCssFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
     
@@ -7,7 +10,7 @@
     Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/_css/admin.css');
     
     //Admin JS
-    Yii::app()->clientScript->registerScriptFile('/_js/admin.js', CClientScript::POS_END);
+    Yii::app()->clientScript->registerScriptFile('/_js/admin.js');
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">

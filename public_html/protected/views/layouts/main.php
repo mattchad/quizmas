@@ -7,21 +7,18 @@
 
 	<?php
         //Define the server address, so the JS knows where to find the websocket server
-    	Yii::app()->clientScript->registerScript('server_ip_address',"var server_ip_address = '" . $_SERVER['SERVER_ADDR'] . "'", CClientScript::POS_HEAD);
+    	Yii::app()->clientScript->registerScript('server_ip_address',"function getWsServerIP() { return '" . $_SERVER['SERVER_ADDR'] . "'; }", CClientScript::POS_END);
     	
     	// jQuery
-    	Yii::app()->clientScript->registerCoreScript('jquery', CClientScript::POS_END);
-    	
-    	// Bootstrap
-        Yii::app()->clientScript->registerScriptFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js', CClientScript::POS_END);
-        
+    	Yii::app()->clientScript->registerCoreScript('jquery');
+    	        
         // Isotope
-        Yii::app()->clientScript->registerScriptFile('/_js/jquery.isotope.min.js', CClientScript::POS_END);
+        Yii::app()->clientScript->registerScriptFile('/_js/jquery.isotope.min.js');
         
         // Typekit / Fonts
-        Yii::app()->clientScript->registerScriptFile('/_js/webfonts.js', CClientScript::POS_END);
-        Yii::app()->clientScript->registerScriptFile('//use.typekit.net/cyo7vgl.js', CClientScript::POS_END); 
-        Yii::app()->clientScript->registerScript('typekit',"try{Typekit.load();}catch(e){}");
+        Yii::app()->clientScript->registerScriptFile('/_js/webfonts.js');
+        Yii::app()->clientScript->registerScriptFile('//use.typekit.net/cyo7vgl.js'); 
+        Yii::app()->clientScript->registerScript('typekit',"try{Typekit.load();}catch(e){}", CClientScript::POS_END);
 	?>
 	
 	<title><?php echo strlen($this->pageTitle) ? $this->pageTitle . ' | Quizmas!' : 'Quizmas!'; ?></title>

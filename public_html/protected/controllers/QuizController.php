@@ -24,15 +24,18 @@ class QuizController extends Controller
 	
 	public function actionBuzzer()
 	{
-		$this->layout = 'main';
+		$this->layout = 'front';
 		$this->pageTitle = 'Buzzer';
+       
 		Yii::app()->clientScript->registerScriptFile('/_js/buzzer.js');
+		
 		$this->render('buzzer');
 	}
 	
 	public function actionScoreboard()
 	{
-		$this->layout = 'main';
+		$this->layout = 'front';
+		$this->pageTitle = 'Scoreboard';
 		
 		Yii::app()->clientScript->registerScriptFile('/_js/scoreboard.js');
 		
@@ -43,8 +46,9 @@ class QuizController extends Controller
 	
 	public function actionQuizmaster()
 	{
-		$this->layout = 'main';
+		$this->layout = 'front';
 		$this->pageTitle = 'Quizmaster';
+		
 		Yii::app()->clientScript->registerScriptFile('/_js/quizmaster.js');
 		
 		$Players = User::model()->findAll(array('order'=>'last_name ASC'));
