@@ -49,7 +49,9 @@ class User extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array();
+		return array(
+    		'questions' => array(self::HAS_MANY, 'Question', 'user_id'),
+		);
 	}
 
 	/**
@@ -72,4 +74,12 @@ class User extends CActiveRecord
 	{
     	return $this->first_name . ' ' . $this->last_name;
 	}
+	
+	public function defaultScope()
+    {
+        //Should always be in round order, this is relied upon in serveral places
+        return array(
+            'order' => 'round_order ASC, id ASC',
+        );      
+    }
 }

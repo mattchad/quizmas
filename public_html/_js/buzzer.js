@@ -6,13 +6,7 @@ $(function ()
 		{
 			conn = new WebSocket('ws://' + getWsServerIP() + ':8080');
 		}
-		
-		function resizeBuzzer()
-		{
-			var height = $(window).height();
-			$('#buzzer a').height(height).css('line-height', height + 'px');
-		}
-		
+				
 	//INITIATE
 	
 		//Initiate the connection variable
@@ -21,8 +15,6 @@ $(function ()
 		//Connect to the server
 		connectToSocket();
 		
-		resizeBuzzer();
-	
 	//SOCKET EVENTS
 		
 		conn.onopen = function(e)
@@ -56,6 +48,41 @@ $(function ()
 					
 					break;
 				}
+				case 'show_buzzer':
+				{
+    				//Quizmas is telling us that we're now a player.
+    				$('.screen').hide();
+                    $('#buzzer').css('display', 'flex').show();
+                    
+    				break;
+				}
+				case 'show_quizmaster':
+				{
+    				//Quizmas is telling us that we're the quizmaster
+    				$('.screen').hide();
+                    $('#quizmaster').show();
+                    
+    				break;
+				}
+				case 'password_incorrect':
+				{
+    				//We've received notification that the password we entered was incorrect.
+    				$('#password').val('');
+    				break;
+				}
+				case 'unlocked_round':
+				{
+    				//The password we entered was correct, we've been notified that the round is unlocked.
+    				$('#quizmaster .password').hide();
+    				$('#quizmaster .next').show();
+    				break;
+				}
+				case 'show_next_question':
+				{
+    				//The next question is about to show.
+    				$('#next').hide();
+                    $('#waiting').show();
+				}
 				case 'new_player':
 				{
 					//We've been told that a player has joined the game, remove them to the choose player screen. 
@@ -75,11 +102,13 @@ $(function ()
 				case 'lock_buzzer':
 				{
 					$('#buzzer a').addClass('locked').html('');
+					$('#unlock_buzzers').html('Unlock Buzzers');
 					break;
 				}
 				case 'unlock_buzzer':
 				{
 					$('#buzzer a').removeClass('locked').html('Press me');
+					$('#unlock_buzzers').html('Buzzers Active');
 					break;
 				}
 				default:
@@ -103,12 +132,7 @@ $(function ()
 				location.reload(true);
 			}
 		}, 1000);
-		
-		$(window).resize(function()
-		{
-			resizeBuzzer();
-		});
-	
+			
 	//JQUERY EVENTS
 			
 			//Tell the server what player we want to be. 
@@ -116,9 +140,6 @@ $(function ()
 			{
 				conn.send(JSON.stringify({ type: 'player_choice', player_id: $(this).data('player_id') }));
 				
-				$('.screen').hide();
-				$('#buzzer').show();
-	
 				return false;
 			});
 			
@@ -127,6 +148,24 @@ $(function ()
 				e.stopPropagation();
 				
 				conn.send(JSON.stringify({ type: 'buzzer' }));
+				return false;
+			});
+			
+			$(document).on('touchstart click', '#unlock_round', function(e)
+			{
+				e.stopPropagation();
+				
+				var password = $('#password').val();
+				
+				conn.send(JSON.stringify({ type: 'unlock_round', 'password': password }));
+				return false;
+			});
+			
+			$(document).on('touchstart click', '#next', function(e)
+			{
+				e.stopPropagation();
+				
+				conn.send(JSON.stringify({ type: 'next_question' }));
 				return false;
 			});
 });

@@ -5,6 +5,7 @@ body
 	background: #FFFFFF;
 	color: #363636;
 	font-weight: 300;
+	margin: 0px;
 }
 
 
@@ -13,6 +14,12 @@ body
 .screen
 {
 	display: none;
+}
+
+#buzzer
+{
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
 }
 
 #buzzer a
@@ -26,6 +33,9 @@ body
 	text-align: center;
 	text-transform: uppercase;
 	margin: 0px;
+	width: 100%;
+	height: 100vh;
+	line-height: 100vh;
 }
 
 #buzzer .locked
@@ -186,10 +196,146 @@ body
 
 /* QUIZMASTER */
 
-#quizmaster .controls
+#quizmaster
 {
-	list-style-type: none;
-	border: 
+    margin: 0px;
+    list-style-type: none;
+    padding: 0px;
+    font-size: 50px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
+
+#quizmaster a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+	height: 50vh;
+	line-height: 50vh;
+}
+
+#quizmaster .next,
+#quizmaster .password
+{
+	background: #ff6700;
+}
+
+#quizmaster .next
+{
+    display: none;
+}
+
+#quizmaster .password
+{
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    height: 100vh;
+}
+
+#quizmaster .password .inner
+{
+    width: 100%;
+}
+
+#quizmaster .password span
+{
+	display: block;
+	width: 80%;
+	margin: 0px auto;
+}
+
+#quizmaster .password input
+{
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.5em;
+	font: inherit;
+	font-size: 8vmin;
+	border: 0px;
+	border-radius: 0px;
+}
+
+#quizmaster .password .button
+{
+    margin-top: 0.2em;
+    background: #666666;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-transform: uppercase;
+    -webkit-border-radius: 0px;
+    -webkit-appearance: none;
+}
+
+#quizmaster .correct
+{
+	background: green;
+	display: none;
+}
+
+#quizmaster .incorrect
+{
+	background: red;
+	display: none;
+}
+
+#quizmaster .waiting
+{
+	background: grey;
+	display: none;
+	height: 100vh;
+	line-height: 100vh;
+}
+
+#quizmaster .next a
+{
+	height: 100vh;
+	line-height: 100vh;
+}
+
+/* PROJECTOR */
+
+#projector
+{
+    text-align: center;
+    font-size: 5vmin;
+    font-weight: bold;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    background: #1863ae;
+    color: #FFFFFF;
+}
+
+#projector .question
+{
+    width: 80%;
+    margin: 0px auto;
+    display: none;
+}
+
+#projector .question p
+{
+    margin: 5vh 0px;
+}
+
+#projector .question .text
+{
+    font-size: 7vmin;
+    line-height: 1.1;
 }
 
 /* NAV */
@@ -232,7 +378,7 @@ body
 
 .nav_list li:nth-child(5n+5)
 {
-	background: #FF6800;
+	background: #ff6700;
 }
 
 .nav_list li a,

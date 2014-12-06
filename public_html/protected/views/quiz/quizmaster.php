@@ -1,4 +1,4 @@
-<meta name="apple-mobile-web-app-capable" content="yes">
+<?php /* <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="apple-touch-icon" href="/_images/iphone-quizmaster.png"/>  
 
 <ul id="quizmaster" class="nav_list">
@@ -11,4 +11,4 @@
 <?php 		
 	}
 ?>
-</div>
+</div> */ ?>

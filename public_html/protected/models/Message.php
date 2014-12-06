@@ -10,6 +10,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
 	private $buzzers_locked = 0;
 	private $available_players = array();
 	private $current_players = array();
+	private $password = null;
 
 	public function __construct()
 	{
@@ -80,6 +81,26 @@ class Message extends CActiveRecord implements MessageComponentInterface
         		
         		//Notify other players that someone else has joined the game.
         		$this->sendToAll(json_encode(array('type'=>'new_player', 'player' => $player_chosen)));
+        		
+        		$nextQuestion = Question::nextQuestion();
+        	
+                if(!is_null($nextQuestion) && $nextQuestion->user_id == $message->player_id)
+                {
+            		//Notify the player that it's not their round, so show the buzzer
+            		$from->send(json_encode(array('type' => 'show_quizmaster')));
+            		
+            		//Post a message on the server. 
+            		echo ' as the quizmaster';
+                }
+                else
+                {
+            		//Notify the player that it's not their round, so show the buzzer
+            		$from->send(json_encode(array('type' => 'show_buzzer')));
+            		
+            		//Post a message on the server. 
+            		echo ' as a player';
+        		}
+        		
         		break;
         	}
         	case 'buzzer':
@@ -107,7 +128,50 @@ class Message extends CActiveRecord implements MessageComponentInterface
         		//echo "Unlocking Buzzers \n";
         		break;
         	}
-        	case 'unlock_buzzer':
+        	case 'unlock_round':
+        	{
+            	//We've received a request to unlock the round from a quizmaster. 
+            	
+            	$nextQuestion = Question::nextQuestion();
+        	
+                if(!is_null($nextQuestion))
+                {
+                    $Quizmaster = $nextQuestion->user;
+                    
+                    if(Hash::validate_password($message->password, $Quizmaster->password))
+                    {
+                        echo 'Request to unlock the round - password correct';
+                        
+                        //Notify the quizmaster that that password was wrong
+                        $from->send(json_encode(array('type' => 'unlocked_round')));
+                        
+                        //Store the password for later use - displaying the questions. 
+                        $this->password = $message->password;
+                    }
+                    else
+                    {
+                        echo 'Request to unlock the round - password incorrect';
+                        
+                        //Notify the quizmaster that that password was wrong
+                        $from->send(json_encode(array('type' => 'password_incorrect')));
+                    }
+                }
+            	break;
+        	}
+        	case 'next_question':
+        	{
+            	//We've been told that the Quizmaster wants to show the next question.
+            	
+            	//Go get the next incomplete question
+            	$nextQuestion = Question::nextQuestion($this->password);
+        	
+                if(!is_null($nextQuestion))
+                {
+                    $this->sendToAll(json_encode(array('type'=>'show_next_question', 'question_text'=>$nextQuestion->text, 'question_value'=>$nextQuestion->value, 'question_number'=>$nextQuestion->list_order)));
+                }
+            	break;
+        	}
+        	/* case 'unlock_buzzer':
         	{
         		$this->buzzers_locked = 0;
         		$this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
@@ -139,7 +203,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
         			echo "Removing a point from " . $Player->first_name . '\'s score';
         		}
         		break;
-        	}
+        	} */
         	default:
         	{
         		break;

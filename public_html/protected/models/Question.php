@@ -42,7 +42,9 @@ class Question extends CActiveRecord
 
 	public function relations()
 	{
-		return array();
+		return array(
+    		'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+		);
 	}
 
 	public function attributeLabels()
@@ -80,5 +82,26 @@ class Question extends CActiveRecord
     	}
     	
     	return parent::beforeSave();
+    }
+    
+    public static function nextQuestion($password = null)
+    {
+        //Loop through the users in round order
+        foreach(User::model()->findAll() as $Player)
+        {
+            //Go and find all the incomplete quetions for this player.
+            $IncompleteQuestions = $Player->questions(array('condition'=>'complete = 0'));
+            
+            //If there's incomplete questions, we return the first as our next question.
+            if(sizeof($IncompleteQuestions))
+            {
+                if(!is_null($password))
+                {
+                    $IncompleteQuestions[0]->text = Hash::decrypt($IncompleteQuestions[0]->text, $password);
+                }
+                return $IncompleteQuestions[0];
+            }
+        }
+        return null; //We don't have a next question.
     }
 }

@@ -51,6 +51,7 @@ return array(
 				'/scoreboard'	=> 'quiz/scoreboard',
 				'/buzzer'	=> 'quiz/buzzer',
 				'/quizmasterz'	=> 'quiz/quizmaster',
+				'/projector'	=> 'quiz/projector',
 			),
 		),
 		

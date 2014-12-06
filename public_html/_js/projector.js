@@ -1,4 +1,4 @@
-/* $(function ()
+$(function ()
 {
 	//FUNCTIONS
 	
@@ -29,14 +29,16 @@
 			
 			switch(message.type)
 			{
-				case 'lock_buzzer':
+				case 'show_next_question':
 				{
-					$('#unlock_buzzers').html('Unlock Buzzers');
-					break;
-				}
-				case 'unlock_buzzer':
-				{
-					$('#unlock_buzzers').html('Buzzers Active');
+    				var projector = $('#projector');
+    				
+    				projector.find('.question').show();
+    				
+					projector.find('.text').html(message.question_text);
+					projector.find('.score span').html(message.question_value);
+					projector.find('.number span').html(message.question_number);
+					
 					break;
 				}
 				default:
@@ -60,33 +62,5 @@
 				location.reload(true);
 			}
 		}, 1000);
-	
-	//JQUERY EVENTS
-			
-		$(document).on('touchstart click', '#unlock_buzzers', function(e)
-		{
-			e.stopPropagation();
-			
-			conn.send(JSON.stringify({ type: 'unlock_buzzer' }));
-			return false;
-		});
-		
-		$(document).on('touchstart click', '.player .add', function(e)
-		{
-			e.stopPropagation();
-			
-			var player = $(this).closest('.player');
-			conn.send(JSON.stringify({ type: 'add_point', player_id: $(player).data('id') }));
-			return false;
-		});
-		
-		$(document).on('touchstart click', '.player .subtract', function(e)
-		{
-			e.stopPropagation();
-			
-			var player = $(this).closest('.player');
-			conn.send(JSON.stringify({ type: 'subtract_point', player_id: $(player).data('id') }));
-			return false;
-		});
 });
-*/
+	
