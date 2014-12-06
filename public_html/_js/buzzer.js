@@ -82,6 +82,20 @@ $(function ()
     				//The next question is about to show.
     				$('#next').hide();
                     $('#waiting').show();
+                    break;
+				}
+				case 'player_buzzed':
+				{
+    				//A player has buzzed. We need to show correct/incorrect options
+    				
+    				//We only do this if we're currently on the waiting screen.
+    				if($('#waiting:visible').length)
+    				{
+        				$('#waiting').hide();
+        				$('#correct').show();
+        				$('#incorrect').show();
+    				}
+    				break;
 				}
 				case 'new_player':
 				{
@@ -166,6 +180,30 @@ $(function ()
 				e.stopPropagation();
 				
 				conn.send(JSON.stringify({ type: 'next_question' }));
+				return false;
+			});
+			
+			$(document).on('touchstart click', '#incorrect', function(e)
+			{
+				e.stopPropagation();
+				
+				conn.send(JSON.stringify({ type: 'incorrect_answer' }));
+				
+				$('#waiting').show();
+				$('#correct').hide();
+				$('#incorrect').hide();
+				return false;
+			});
+			
+			$(document).on('touchstart click', '#correct', function(e)
+			{
+				e.stopPropagation();
+				
+				conn.send(JSON.stringify({ type: 'correct_answer' }));
+				
+				$('#next').show();
+				$('#correct').hide();
+				$('#incorrect').hide();
 				return false;
 			});
 });

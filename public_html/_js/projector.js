@@ -36,7 +36,7 @@ $(function ()
     				projector.find('.question').show();
     				
 					projector.find('.text').html(message.question_text);
-					projector.find('.score span').html(message.question_value);
+					projector.find('.points span').html(message.question_value);
 					projector.find('.number span').html(message.question_number);
 					
 					break;

@@ -8,6 +8,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
     
 	private $clients;
 	private $buzzers_locked = 0;
+	private $first_buzzed = null;
 	private $available_players = array();
 	private $current_players = array();
 	private $password = null;
@@ -26,6 +27,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
         	$temp_player->last_name = $Player->last_name;
         	$temp_player->points = $Player->points;
         	$temp_player->resource_id = null;
+        	$temp_player->connection = null;
         	$this->available_players[$Player->id] = $temp_player;
         }
     }
@@ -69,6 +71,9 @@ class Message extends CActiveRecord implements MessageComponentInterface
         		
         		//Link the player to the resource ID for this connection
         		$player_chosen->resource_id = $from->resourceId;
+
+        		//Save the connection to this player, incase we need to send them a private message
+        		$player_chosen->connection = $from;
         		
         		//Move the player into the current players list
         		$this->current_players[$message->player_id] = $player_chosen;
@@ -116,6 +121,9 @@ class Message extends CActiveRecord implements MessageComponentInterface
         			$this->buzzers_locked = microtime(true);
 	        		$this->sendToAll(json_encode(array('type'=>'player_buzzed', 'player'=>$Player)));
 	        		$this->sendToAll(json_encode(array('type'=>'lock_buzzer')));
+	        		
+	        		//Save this player, we're going to need to know who it is when the quizmaster responds
+	        		$this->first_buzzed = $Player;
         		}
         		else
         		{
@@ -127,6 +135,39 @@ class Message extends CActiveRecord implements MessageComponentInterface
         		//$this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
         		//echo "Unlocking Buzzers \n";
         		break;
+        	}
+        	case 'incorrect_answer':
+        	{
+            	//The quizmaster has notified us that the answer is incorrect. 
+            	
+            	//We also need to make sure that the buzzers get unlocked
+                $this->unlockBuzzers();
+            	
+            	break;
+        	}
+        	case 'correct_answer':
+        	{
+            	//The quizmaster has notified us that the answer is correct. 
+            	//We don't unlock the buzzers here, that's done when we click "next" 
+            	
+            	$Question = Question::nextQuestion($this->password);
+            	$Player = User::model()->findByPk($this->first_buzzed->id);
+        	
+                if(!is_null($Question) && !is_null($Player))
+                {
+                    //Update the player's score
+        			$Player->points = (int)$Player->points + (int)$Question->value; 
+        			$Player->save(false, array('points'));
+        			
+        			//Mark the question as complete
+        			$Question->complete = 1;
+        			$Question->save(false, array('complete'));
+        			
+        			$this->sendToAll(json_encode(array('type'=>'update_points', 'player_id' => $Player->id, 'score'=>$Player->points)));
+        			echo "Updating " . $Player->first_name . '\'s score (+' . (int)$Question->value . ')';
+        		}     
+            	            	
+            	break;
         	}
         	case 'unlock_round':
         	{
@@ -162,12 +203,48 @@ class Message extends CActiveRecord implements MessageComponentInterface
         	{
             	//We've been told that the Quizmaster wants to show the next question.
             	
+            	//Get the details of the current Quizmaster
+            	$Quizmaster = $this->resourceIdToPlayer($from->resourceId);
+            	
             	//Go get the next incomplete question
             	$nextQuestion = Question::nextQuestion($this->password);
         	
                 if(!is_null($nextQuestion))
                 {
-                    $this->sendToAll(json_encode(array('type'=>'show_next_question', 'question_text'=>$nextQuestion->text, 'question_value'=>$nextQuestion->value, 'question_number'=>$nextQuestion->list_order)));
+                    //Does the next question belong to this quizmaster?
+                    if((int)$Quizmaster->id === (int)$nextQuestion->user_id)
+                    {
+                        $this->sendToAll(json_encode(array('type'=>'show_next_question', 'question_text'=>$nextQuestion->text, 'question_value'=>$nextQuestion->value, 'question_number'=>$nextQuestion->list_order)));
+                        
+                        //We also need to make sure that the buzzers get unlocked
+                        $this->unlockBuzzers();
+                    }
+                    else
+                    {
+                        //Is the next Quizmaster connected to the game?
+                        if(isset($this->current_players[$nextQuestion->user_id]))
+                        {
+                            //Locate the details of the new Quizmaster
+                            $newQuizmaster = $this->current_players[$nextQuestion->user_id];
+                            
+                            //Notify the player that they're now the quizmaster
+                    		$newQuizmaster->connection->send(json_encode(array('type' => 'show_quizmaster')));
+                    		
+                            //Post a message on the server. 
+                            echo $newQuizmaster->first_name . ' is now the quizmaster \n';
+                		}
+                		else
+                		{
+                    		//The next quizmaster isn't in the game
+                            echo "The next quizmaster is not connected to the game. \n";
+                		}
+                		
+                		//Notify the player that it's not their round, so show the buzzer
+                		$from->send(json_encode(array('type' => 'show_buzzer')));
+                		
+                		//Post a message on the server. 
+                		echo $Quizmaster->first_name . ' is now a player';
+                    }
                 }
             	break;
         	}
@@ -228,8 +305,9 @@ class Message extends CActiveRecord implements MessageComponentInterface
 	        //Let all the other users know that we have one less player. 
 			$this->sendToAll(json_encode(array('type'=>'player_disconnected', 'player' => $Player)));
 			
-			//Detatch the player from the resourse ID for that connection
+			//Detatch the player from the resourse ID and connection
 			$Player->resource_id = null;
+			$Player->connection = null;
 			
 			//Post a message on the server
 			$alert = $Player->first_name . ' has left the game';
@@ -274,6 +352,14 @@ class Message extends CActiveRecord implements MessageComponentInterface
         	}
         }
         return null;
+    }
+    
+    public function unlockBuzzers()
+    {
+        $this->buzzers_locked = 0;
+        $this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
+        echo "Next Question - Unlocking Buzzers";
+        $this->first_buzzed = null;
     }
 
 

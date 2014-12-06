@@ -102,7 +102,21 @@ $(document).ready(function()
 					$('.player .time').hide().html('');
 					break;
 				}
-				case 'add_point':
+				case 'update_points':
+				{
+					var points = parseInt( $('#player_' + message.player_id).find('.score').html() );
+					$('#player_' + message.player_id).find('.score').html(message.score);
+					
+					//Can't do $('#add').play() for some reason. 
+					var audio = document.getElementById('add');
+					audio.currentTime = 0;
+					audio.play();
+					
+					reorderPlayers();
+					
+					break;
+				}
+				/* case 'add_point':
 				{
 					var points = parseInt( $('#player_' + message.player_id).find('.score').html() );
 					$('#player_' + message.player_id).find('.score').html(points+1);
@@ -129,7 +143,7 @@ $(document).ready(function()
 					reorderPlayers();
 					
 					break;
-				}
+				} */
 				case 'player_buzzed_late':
 				{
 					var player = $('#player_' + message.player.id);

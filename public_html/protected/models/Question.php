@@ -72,7 +72,16 @@ class Question extends CActiveRecord
         if($this->isNewRecord)
     	{
         	//Go and find the last question for this user and increment the list_order by one. 
-        	$this->list_order = Question::model()->findByAttributes(array('user_id'=>Yii::app()->user->id), array('order'=>'list_order DESC'))->list_order + 1;
+        	
+        	$previousQueston = Question::model()->findByAttributes(array('user_id'=>Yii::app()->user->id), array('order'=>'list_order DESC'));
+        	if(!is_null($previousQueston))
+        	{
+        	    $this->list_order = $previousQueston->list_order + 1;
+        	}
+        	else
+        	{
+        	    $this->list_order = 1;
+        	}
     	}
     	
     	if(!$this->encrypted)
