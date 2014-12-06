@@ -36,3 +36,9 @@
 <audio id="subtract" preload="auto">
 	<source src="/_sounds/subtract.ogg" type="audio/ogg" />
 </audio>
+<audio id="correct" preload="auto">
+	<source src="/_sounds/correct.ogg" type="audio/ogg" />
+</audio>
+<audio id="incorrect" preload="auto">
+	<source src="/_sounds/incorrect.ogg" type="audio/ogg" />
+</audio>

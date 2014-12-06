@@ -107,12 +107,25 @@ $(document).ready(function()
 					var points = parseInt( $('#player_' + message.player_id).find('.score').html() );
 					$('#player_' + message.player_id).find('.score').html(message.score);
 					
-					//Can't do $('#add').play() for some reason. 
-					var audio = document.getElementById('add');
+					reorderPlayers();
+					
+					break;
+				}
+				case 'correct_answer':
+				{
+					//Can't do $('#correct').play() for some reason. 
+					var audio = document.getElementById('correct');
 					audio.currentTime = 0;
 					audio.play();
 					
-					reorderPlayers();
+					break;
+				}
+				case 'incorrect_answer':
+				{
+					//Can't do $('#incorrect').play() for some reason. 
+					var audio = document.getElementById('incorrect');
+					audio.currentTime = 0;
+					audio.play();
 					
 					break;
 				}

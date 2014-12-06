@@ -52,7 +52,8 @@ $(function ()
 				{
     				//Quizmas is telling us that we're now a player.
     				$('.screen').hide();
-                    $('#buzzer').css('display', 'flex').show();
+    				$('#password').blur();
+                    $('#buzzer').show();
                     
     				break;
 				}
@@ -115,13 +116,13 @@ $(function ()
 				}
 				case 'lock_buzzer':
 				{
-					$('#buzzer a').addClass('locked').html('');
+					$('#buzzer').addClass('buzzer_locked').html('Locked');
 					$('#unlock_buzzers').html('Unlock Buzzers');
 					break;
 				}
 				case 'unlock_buzzer':
 				{
-					$('#buzzer a').removeClass('locked').html('Press me');
+					$('#buzzer').removeClass('buzzer_locked').html('Buzz');
 					$('#unlock_buzzers').html('Buzzers Active');
 					break;
 				}
@@ -157,7 +158,7 @@ $(function ()
 				return false;
 			});
 			
-			$(document).on('touchstart click', '#buzzer a', function(e)
+			$(document).on('touchstart click', '#buzzer', function(e)
 			{
 				e.stopPropagation();
 				
@@ -169,7 +170,7 @@ $(function ()
 			{
 				e.stopPropagation();
 				
-				var password = $('#password').val();
+				var password = $('#password').blur().val();
 				
 				conn.send(JSON.stringify({ type: 'unlock_round', 'password': password }));
 				return false;

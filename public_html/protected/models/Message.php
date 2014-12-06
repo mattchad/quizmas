@@ -140,6 +140,9 @@ class Message extends CActiveRecord implements MessageComponentInterface
         	{
             	//The quizmaster has notified us that the answer is incorrect. 
             	
+            	//Relay this message onto everyone else.
+                $this->sendToAll(json_encode(array('type'=>'incorrect_answer')));
+            	
             	//We also need to make sure that the buzzers get unlocked
                 $this->unlockBuzzers();
             	
@@ -165,6 +168,9 @@ class Message extends CActiveRecord implements MessageComponentInterface
         			
         			$this->sendToAll(json_encode(array('type'=>'update_points', 'player_id' => $Player->id, 'score'=>$Player->points)));
         			echo "Updating " . $Player->first_name . '\'s score (+' . (int)$Question->value . ')';
+        			
+        			//Relay this message onto everyone else.
+                    $this->sendToAll(json_encode(array('type'=>'correct_answer')));
         		}     
             	            	
             	break;
