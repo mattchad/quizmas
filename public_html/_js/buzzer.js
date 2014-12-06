@@ -116,14 +116,20 @@ $(function ()
 				}
 				case 'lock_buzzer':
 				{
+    				//Someone has buzzed, so we need to lock the buzzer and change the text
 					$('#buzzer').addClass('buzzer_locked').html('Locked');
-					$('#unlock_buzzers').html('Unlock Buzzers');
 					break;
 				}
 				case 'unlock_buzzer':
 				{
-					$('#buzzer').removeClass('buzzer_locked').html('Buzz');
-					$('#unlock_buzzers').html('Buzzers Active');
+    				//We're unlocking and unfreezing buzzers and changing the text
+					$('#buzzer').removeClass('buzzer_frozen').removeClass('buzzer_locked').html('Buzz');
+					break;
+				}
+				case 'frozen_buzzer':
+				{
+    				//This buzzer is frozen. Mark it as such and change the text.
+					$('#buzzer').addClass('buzzer_frozen').html('Frozen');
 					break;
 				}
 				default:

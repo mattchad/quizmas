@@ -34,7 +34,12 @@ body
 
 .buzzer_locked
 {
-	background: red;
+	background: #B21B00;
+}
+
+.buzzer_frozen
+{
+    background: #999999;
 }
 
 /* SCOREBOARD */
@@ -283,13 +288,13 @@ body
 
 #quizmaster .incorrect
 {
-	background: red;
+	background: #B21B00;
 	display: none;
 }
 
 #quizmaster .waiting
 {
-	background: grey;
+	background: #999999;
 	display: none;
 	height: 100vh;
 	line-height: 100vh;

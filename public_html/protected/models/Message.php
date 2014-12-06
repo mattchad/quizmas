@@ -9,6 +9,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
 	private $clients;
 	private $buzzers_locked = 0;
 	private $first_buzzed = null;
+	private $frozen_buzzer = null;
 	private $available_players = array();
 	private $current_players = array();
 	private $password = null;
@@ -113,7 +114,13 @@ class Message extends CActiveRecord implements MessageComponentInterface
         		//A player pressed their buzzer
         		$Player = $this->resourceIdToPlayer($from->resourceId);
         		
-        		if(!$this->buzzers_locked)
+        		//Is the buzzer frozen?
+        		if($this->frozen_buzzer === $Player->id)
+        		{
+	        		//Post a message on the server
+	        		echo $Player->first_name . " Buzzed! - Frozen Buzzer";
+        		}
+        		else if(!$this->buzzers_locked)
         		{
 	        		//Post a message on the server
 	        		echo $Player->first_name . " Buzzed! - Locking Buzzers";
@@ -139,6 +146,13 @@ class Message extends CActiveRecord implements MessageComponentInterface
         	case 'incorrect_answer':
         	{
             	//The quizmaster has notified us that the answer is incorrect. 
+            	
+            	//Check if we still know who buzzed
+            	if(!is_null($this->first_buzzed))
+            	{
+                	//Save the details of the player that is now frozen.
+                	$this->frozen_buzzer = $this->first_buzzed->id;
+            	}
             	
             	//Relay this message onto everyone else.
                 $this->sendToAll(json_encode(array('type'=>'incorrect_answer')));
@@ -209,6 +223,9 @@ class Message extends CActiveRecord implements MessageComponentInterface
         	{
             	//We've been told that the Quizmaster wants to show the next question.
             	
+            	//If there was a frozen buzzer, lets forget about it. 
+            	$this->frozen_buzzer = null;
+            	
             	//Get the details of the current Quizmaster
             	$Quizmaster = $this->resourceIdToPlayer($from->resourceId);
             	
@@ -237,7 +254,7 @@ class Message extends CActiveRecord implements MessageComponentInterface
                     		$newQuizmaster->connection->send(json_encode(array('type' => 'show_quizmaster')));
                     		
                             //Post a message on the server. 
-                            echo $newQuizmaster->first_name . ' is now the quizmaster \n';
+                            echo $newQuizmaster->first_name . " is now the quizmaster \n";
                 		}
                 		else
                 		{
@@ -366,6 +383,13 @@ class Message extends CActiveRecord implements MessageComponentInterface
         $this->sendToAll(json_encode(array('type'=>'unlock_buzzer')));
         echo "Next Question - Unlocking Buzzers";
         $this->first_buzzed = null;
+        
+        //Is there a frozen buzzer?
+        if(!is_null($this->frozen_buzzer))
+        {
+            //Notify the player that they're now frozen
+    		$this->current_players[$this->frozen_buzzer]->connection->send(json_encode(array('type' => 'frozen_buzzer')));
+        }
     }
 
 
