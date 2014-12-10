@@ -6,7 +6,7 @@
 
 <ul id="choose_player" class="screen nav_list"></ul>
 
-<div id="buzzer" class="screen buzzer">PRESS ME</div>
+<div id="buzzer" class="screen buzzer">Buzz</div>
 
 <div id="quizmaster" class="screen">
 	<div class="password">
