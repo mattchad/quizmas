@@ -83,6 +83,11 @@ $(function ()
     				//The next question is about to show.
     				$('#next').hide();
                     $('#waiting').show();
+                    $('#question').show();
+                    
+                    $('#question').find('.text').html(message.question_text);
+					$('#question').find('.points').html(message.question_value);
+					$('#question').find('.number').html(message.question_number);
                     break;
 				}
 				case 'player_buzzed':
@@ -93,6 +98,7 @@ $(function ()
     				if($('#waiting:visible').length)
     				{
         				$('#waiting').hide();
+        				$('#question').hide();
         				$('#correct').show();
         				$('#incorrect').show();
     				}
@@ -197,6 +203,7 @@ $(function ()
 				conn.send(JSON.stringify({ type: 'incorrect_answer' }));
 				
 				$('#waiting').show();
+				$('#question').show();
 				$('#correct').hide();
 				$('#incorrect').hide();
 				return false;

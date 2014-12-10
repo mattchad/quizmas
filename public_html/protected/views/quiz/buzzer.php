@@ -18,5 +18,6 @@
 	<div class="next" id="next">Next</div>
 	<div class="correct" id="correct">Correct</div>
 	<div class="incorrect" id="incorrect">Incorrect</div>
+	<div class="question" id="question">#<span class="number"></span>. <span class="text"></span> (<span class="points"></span>)</div>
 	<div class="waiting" id="waiting">Waiting</div>
 </div>
