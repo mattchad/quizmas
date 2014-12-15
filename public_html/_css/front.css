@@ -186,7 +186,7 @@ body
 	border: 4px solid #111111;
 }
 
-#scoreboard .player .score
+#scoreboard .player .score_inner
 {
 	margin: 0px;
 	color: #FFFFFF;

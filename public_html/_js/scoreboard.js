@@ -106,6 +106,7 @@ $(document).ready(function()
 				{
 					var points = parseInt( $('#player_' + message.player_id).find('.score').html() );
 					$('#player_' + message.player_id).find('.score').html(message.score);
+					$('#player_' + message.player_id).find('.round_score').html(message.round_score);
 					
 					reorderPlayers();
 					
@@ -128,6 +129,11 @@ $(document).ready(function()
 					audio.play();
 					
 					break;
+				}
+				case 'reset_round_scores':
+				{
+    				$('.round_score').html('0');
+    				break;
 				}
 				/* case 'add_point':
 				{

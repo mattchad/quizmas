@@ -174,13 +174,14 @@ class Message extends CActiveRecord implements MessageComponentInterface
                 {
                     //Update the player's score
         			$Player->points = (int)$Player->points + (int)$Question->value; 
-        			$Player->save(false, array('points'));
+        			$Player->round_points = (int)$Player->round_points + (int)$Question->value; 
+        			$Player->save(false, array('points', 'round_points'));
         			
         			//Mark the question as complete
         			$Question->complete = 1;
         			$Question->save(false, array('complete'));
         			
-        			$this->sendToAll(json_encode(array('type'=>'update_points', 'player_id' => $Player->id, 'score'=>$Player->points)));
+        			$this->sendToAll(json_encode(array('type'=>'update_points', 'player_id' => $Player->id, 'score'=>$Player->points, 'round_score'=>$Player->round_points)));
         			echo "Updating " . $Player->first_name . '\'s score (+' . (int)$Question->value . ')';
         			
         			//Relay this message onto everyone else.
@@ -261,6 +262,12 @@ class Message extends CActiveRecord implements MessageComponentInterface
                     		//The next quizmaster isn't in the game
                             echo "The next quizmaster is not connected to the game. \n";
                 		}
+                		
+                		//Set everyone's round score back to zero - this is a new round.
+                		User::model()->updateAll(array('round_points'=>0));
+                		
+                		//Tell everyone that the round scores have been reset
+                        $this->sendToAll(json_encode(array('type'=>'reset_round_scores')));
                 		
                 		//Notify the player that it's not their round, so show the buzzer
                 		$from->send(json_encode(array('type' => 'show_buzzer')));

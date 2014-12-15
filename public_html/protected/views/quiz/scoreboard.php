@@ -17,7 +17,7 @@
 			    </div>
 			    <div class="board_inner board_bottom">
 			    	<div class="score_outer">
-    					<p class="score"><?php echo $Player->points;?></p>
+    					<p class="score_inner"><span class="score"><?php echo $Player->points;?></span> [<span class="round_score"><?php echo $Player->round_points;?></span>]</p>
     				</div>
 			    </div>
 			</div>
