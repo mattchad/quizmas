@@ -17,7 +17,7 @@ class Question extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('text', 'length', 'min'=>3, 'max'=>100),
+			array('text', 'length', 'min'=>3, 'max'=>300),
 			
 			array('value', 'numerical', 'min'=>1, 'max'=>100),
 			
